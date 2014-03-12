@@ -8,8 +8,12 @@ autopublish
 insecure
 preserve-inputs
 jquery
-router
 font-awesome
 less
 fonts-helveticas
 bootstrap-flatly
+router
+accounts-base
+accounts-password
+accounts-ui
+accounts-twitter

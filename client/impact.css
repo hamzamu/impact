@@ -1,17 +1,19 @@
 /* CSS declarations go here */
 
 
+body, html, .container-fluid { 
+  height: 100%;
+}
+
+
 .open{
 	color:red;
 }
 
 body{
 	background:#f7f7f7 url("http://i.imgur.com/MO8bt.png");
+	scrollbar-face-color: #b46868;
 }
-
-
-
-
 
 
 .nonselected{
@@ -163,25 +165,7 @@ body, html, .container {
 	text-align:left;
 
 }
-/*
-#drops div {
-	background:#FFF;
-	border-left:5px solid #D5D5D5;
-	-moz-box-shadow:    1px 1px 3px 0px #dedede;
- 	-webkit-box-shadow: 1px 1px 3px 0px #dedede;
- 	box-shadow:         1px 1px 3px 0px #dedede;
-	padding:10px 30px;
-	overflow:hidden;
- 	color: #3b3b3b;
-    font:  Verdana,sans-serif;
-    line-height:36px;
-    text-align:justify;
-	
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-	
-}*/
+
 .post{
 	background:#FFF;
 	border-left:5px solid #D5D5D5;
@@ -194,11 +178,7 @@ body, html, .container {
     font:  Verdana,sans-serif;
     line-height:36px;
     text-align:justify;
-	/*
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-	*/
+
 }
 
 .shadow{
@@ -223,10 +203,6 @@ body, html, .container {
 #drops .po:hover {
 	border-left:5px solid #777;
 }
-
-
-
-
 
 #drops div  .cdl {
 	color:#888;
@@ -258,26 +234,6 @@ body, html, .container {
 
 }
 
-/*
-#drops div span {
-	visibility: hidden;
-	float:right;
-	color: #dedede;
-    font: 15px Verdana,sans-serif;
-    font-weight:bold;
-    position:relative;
-    left:40px;
-    cursor:pointer;
-}
-
-#drops div:hover span {
-	visibility: visible;
-}
-
-#drops div span:hover {
-	color: #640c00;
-}
-*/
 
 /*
 	bootstrap override
@@ -286,9 +242,13 @@ body, html, .container {
 .panel-success{
 	border:none;
 }
+
+
 .bs-component{
 	overflow:hidden;
 	}
+	
+	
 .label {
 display: inline;
 float:none;
@@ -331,6 +291,7 @@ ul.icons{
 
 	padding-bottom:30px;
 }
+
 ul.icons li{
 	display:block;
 
@@ -346,11 +307,11 @@ ul.icons li a{
  	box-shadow:         1px 1px 3px 0px #dedede;
 	padding:20px;
 	text-align:center;
-	background:#FFF;
-	
+	background:#FFF;	
 	cursor: pointer; cursor: hand;
 	
 }
+
 ul.icons li a:hover{
 	color:#FFF;
 	background:#333;
@@ -359,15 +320,20 @@ ul.icons li a:hover{
 .red{
 	border-left:5px solid red;
 }
+
 .green{
 	border-left:5px solid #00cc99;
 }
+
 .blue{
 	border-left:5px solid #0099cc;
 }
+
+
 .gree{
 	border-left:5px solid #99cc00;
 }
+
 .bree{
 	border-left:5px solid #b233cc;
 }
@@ -386,6 +352,7 @@ ul.icons li a:hover{
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
+
 .borderbottom{
 	-webkit-border-bottom-left-radius: 5px;
 	-webkit-border-bottom-right-radius: 5px;
@@ -400,12 +367,114 @@ ul.hash{
 	list-style:none;
 
 }
-.hashx{
 
-	padding-top:120px;
+
+.margintop{
+	margin-top:80px;
 }
 
 
+/*
+	admin
+*/
 
+.content{
+	padding:10px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	height:100%;
+}
+
+
+#idbar{
+	width:90px;
+	height:100%;
+	position:relative;
+	background:#151515;
+	border-right:1px solid #212121;
+	float:left;
+	padding:10px;
+}
+
+#idbar2{
+	width:250px;
+	height:100%;
+	position:relative;
+	background:#202020;
+	border-left:1px solid #111;
+	border-right:1px solid #555;
+	
+	float:left;
+}
+
+#idbar3{
+	width:500px;
+	height:100%;
+	position:relative;
+	background:#F8F8F8;
+	border-left:1px solid #222;
+	border-right:1px solid #FFF;
+	float:left;
+}
+
+#idbar4{
+	width:400px;
+	height:100%;
+	position:relative;
+	background:#FFF;
+	border-left:1px solid #EEE;
+	border-right:1px solid #EEE;
+	float:left;
+}
+
+/*
+ icons admin
+*/
+
+
+ul.icons_admin{
+	padding:0;margin:0;
+	list-style:none;
+	padding-top:10px;
+}
+
+ul.icons_admin li{
+	display:block;
+	width:60px;
+	height:60px;
+	margin:0px auto;
+	text-align:center;
+}
+
+ul.icons_admin li a{
+	color:#999;
+	display:block;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 24px;
+}
+
+
+ul.icons_admin li a:hover{
+	color:#2C3E50;
+}
+
+
+/*
+tooltip admin
+*/
+
+.tooltip-inner{
+	background:#2FA4E7;
+}
+
+.ofh{
+	overflow:hidden;
+}
+
+
+.mouse_hand{
+	cursor: pointer; cursor: hand;
+}
 
 

@@ -1,4 +1,14 @@
+if (Meteor.isClient) {
 posts = new Meteor.Collection("posts");
+
+	Meteor.Router.add({
+	  '/login': 'login',
+	  '/admin': 'admin',
+	  '/main': 'page',
+	  '/': 'page',	
+	  '*': '404'
+	});
+
 
 
 	Meteor.autosubscribe(function () {
@@ -102,7 +112,7 @@ posts = new Meteor.Collection("posts");
 		'keyup .list-name-input': function(e,t){
 			 if (e.which === 13){
 				var catVal = String(e.target.value || "");					
-					posts.update(this._id, {$set: {status:catVal}});
+					posts.update(this._id, {$set: {post:catVal}});
 					
 				Session.set('editing_listname', null);
 			}
@@ -120,7 +130,7 @@ posts = new Meteor.Collection("posts");
 			if (catVal)
 			{
 			posts.insert({
-				status:catVal,
+				post:catVal,
 				created_at: new Date(),
 				//user_id: Meteor.user()._id
 				});
@@ -144,6 +154,8 @@ function focusText(i,val) {
     i.focus();
     i.value = val ? val : "";
     i.select();
+
+};
 
 };
 

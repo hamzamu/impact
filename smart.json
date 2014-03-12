@@ -1,9 +1,8 @@
 {
   "packages": {
-    "router": {},
     "font-awesome": {},
     "fonts-helveticas": {},
     "bootstrap-flatly": {},
-    "moment": {}
+    "router": {}
   }
 }

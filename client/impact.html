@@ -3,26 +3,34 @@
 
 </head>
 
-<body>
-	
-	{{> nav}}  
-
-    <div  class="padding_raw"></div>
-	 <div class="container">	
-	{{> main}}	
-	</div>
-	
+<body>	
+   
+    {{renderPage}}	
 
 </body>
 
 
-<template name="main">
-	<br />
-	<br />
-	<br />
-	<br />
+<template name="page">
+	{{> nav}} 
+
+    <div  class="margintop"></div>
+	 <div class="container">
+    
+    {{> main}}
+    	
+	</div>
 	
-	<div class="row" style="height:auto;overflow:hidden;">	
+
+</template>
+
+
+
+
+
+<template name="main">
+
+	
+	<div class="row">	
 
 	<div class="col-md-1">
 		
@@ -103,9 +111,7 @@
 	
 	
 	<div class="col-md-6 "> <!--col-md-offset-2-->
-		
-
-		
+				
 		{{> posts}}
 		
 	</div><!--col for posts-->
