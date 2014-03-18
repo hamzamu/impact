@@ -5,6 +5,8 @@ if (Meteor.isClient) {
 	Session.setDefault('depadge','Dashboard');
 	Session.setDefault('editing_listname', null);
 	
+	Meteor.subscribe("allUserData");
+	
 	
 	Template.admin.editing = function () {
 		return Session.equals('editing_listname', this._id);
@@ -19,6 +21,11 @@ if (Meteor.isClient) {
 
   	Template.admin.posts = function () {
 		return posts.find({}, {sort: {created_at: -1}});		
+	};
+  	Template.users.users = function () {
+		return Meteor.users.find({});
+		//return Meteor.users.find({_id: this.userId},{fields: {'other': 1, 'things': 1}});	
+		
 	};
 	
 	Template.admin.admin = function(){
@@ -124,7 +131,7 @@ if (Meteor.isClient) {
 						$('#add_new_post').val("").select().focus();
 					}
 					
-				if(evt.which ==27){$('#add_new_post').val("");}
+				if(evt.which ==27){$('#add_new_post').val("").focusout();}
 	     },
 		
 			

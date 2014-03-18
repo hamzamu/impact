@@ -2,7 +2,8 @@
   "packages": {
     "font-awesome": {},
     "fonts-helveticas": {},
-    "bootstrap-flatly": {},
-    "router": {}
+    "router": {},
+    "roles": {},
+    "bootstrap-flatly": {}
   }
 }

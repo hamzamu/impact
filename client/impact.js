@@ -1,9 +1,13 @@
-if (Meteor.isClient) {
 posts = new Meteor.Collection("posts");
+
+
+if (Meteor.isClient) {
+	
 
 	Meteor.Router.add({
 	  '/login': 'login',
 	  '/admin': 'admin',
+	  '/admin/users': 'users',
 	  '/main': 'page',
 	  '/': 'page',	
 	  '*': '404'
@@ -11,9 +15,11 @@ posts = new Meteor.Collection("posts");
 
 
 
-	Meteor.autosubscribe(function () {
-	  Meteor.subscribe('posts'); 
-	});
+
+	
+	Meteor.subscribe('posts');
+	Meteor.subscribe("directory");
+	
   //~ Meteor.autosubscribe(function(){
     //~ posts.find().observe({
       //~ added: function(item){
@@ -31,8 +37,23 @@ posts = new Meteor.Collection("posts");
 	//~ });  
   
   	Template.posts.posts = function () {
-		return posts.find({}, {sort: {created_at: -1}});		
+		return posts.find({}, {sort: {created_at: -1}});
+		
 	};
+	
+	
+	Template.posts.helpers({
+	 username: function() {	   
+	   var userid = this.author;	  	
+	   var username = Meteor.users.findOne({_id: userid});
+	   return (username);
+	 },
+	});
+	
+  	//~ Template.posts.authorx = function () {
+		//~ return Meteor.users.findOne({fields: {_id: posts.author}});
+		//~ 
+	//~ };
 
 	Session.set('adding_category', false);
 	Template.main.new_cat = function () {
@@ -132,7 +153,10 @@ posts = new Meteor.Collection("posts");
 			posts.insert({
 				post:catVal,
 				created_at: new Date(),
+				//created_at: new Date().getTime(),
 				//user_id: Meteor.user()._id
+				//author : Meteor.user()._id
+				author : Meteor.userId(),
 				});
 			Session.set('adding_category', false);
 			//$(event.target).slideUp('slow');
@@ -159,6 +183,23 @@ function focusText(i,val) {
 
 };
 
+
+if (Meteor.isServer) {
+
+	Meteor.publish('posts', function () {
+	   posts.find({});
+	});
+	
+
+	Meteor.publish("allUsers", function () {
+	  return Meteor.users.find({});
+	});	
+	
+	
+  Meteor.startup(function () {
+    // code to run on server at startup
+  });
+}
 
 
 

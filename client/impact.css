@@ -12,7 +12,7 @@ body, html, .container-fluid {
 
 body{
 	background:#f7f7f7 url("http://i.imgur.com/MO8bt.png");
-	scrollbar-face-color: #b46868;
+
 }
 
 
@@ -386,6 +386,30 @@ ul.hash{
 }
 
 
+
+
+.content::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	
+	background-color: #F5F5F5;
+}
+
+.content::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.content::-webkit-scrollbar-thumb
+{
+
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+
+
 #idbar{
 	width:90px;
 	height:100%;
@@ -415,16 +439,18 @@ ul.hash{
 	border-left:1px solid #222;
 	border-right:1px solid #FFF;
 	float:left;
+	
 }
 
 #idbar4{
 	width:400px;
 	height:100%;
 	position:relative;
-	background:#FFF;
+	background:none;
 	border-left:1px solid #EEE;
 	border-right:1px solid #EEE;
 	float:left;
+	
 }
 
 /*
@@ -477,4 +503,70 @@ tooltip admin
 	cursor: pointer; cursor: hand;
 }
 
+
+/*
+	admin chat
+*/
+
+	.bubble {
+		background-color: #FFF;
+		background-image: -webkit-linear-gradient(top, hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+		background-image:    -moz-linear-gradient(top, hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+		background-image:     -ms-linear-gradient(top, hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+		background-image:      -o-linear-gradient(top, hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+		background-image:         linear-gradient(top, hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+		border-radius: 5px;
+		box-shadow: inset 0 1px 1px hsla(0,0%,100%,.5),
+					3px 3px 0 hsla(0,0%,0%,.1);
+		color: #333;
+		display: inline-block;
+		font: 16px/25px sans-serif;
+		padding: 15px;
+		position: relative;
+		text-shadow: 0 1px 1px hsla(0,0%,100%,.5);
+	}
+	.bubble:after, .bubble:before {
+		border-bottom: 25px solid transparent;
+		border-right: 25px solid #FFF;
+		bottom: -25px;
+		content: '';
+		position: absolute;
+		right: 25px;
+	}
+	.bubble:before {
+		border-right: 25px solid hsla(0,0%,0%,.1);
+		bottom: -28px;
+		right: 22px;
+	}
+	
+	.chat{
+		overflow:hidden;
+		
+		margin-bottom:9px;
+	}
+	
+	.chat .nav{
+		margin-top:20px;
+	
+	}
+	
+	#chatbox{
+		position:relative;
+	}
+	
+	#chatbox .chatelements{
+		position:absolute;
+		margin-top:100px;
+			
+
+	}
+	
+	#chatbox .sendmsg{
+		position:absolute;
+		top:0;left:0;
+
+		width:100%;
+		height:80px;
+	}
+	
 
