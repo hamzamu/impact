@@ -1,7 +1,14 @@
 <template name="posts">
 		<div id="posts" class="">
 		<div id="drops" class="">
-		<div class="bordertop"></div>
+			
+
+		<div class="post bordertop"></div>
+		
+		
+
+			
+		
 		{{#each posts}}		
 			<div class="post {{deleted}} po">
 				
@@ -22,10 +29,15 @@
 		</p>-->
 
 		
-		{{username.profile.name}}
-		{{username.username}}
+		{{#if username.profile.name}}
+			{{username.profile.name}}		
+		{{else}}
+			{{username.username}}
+		{{/if}}
 		
-		<p>{{author}}</p>
+		
+		
+		<!--<p>{{author}}</p>-->
 
 
 
@@ -45,7 +57,7 @@
 						
 			</div>
 		{{/each}}
-		<div class="borderbottom"></div>
+		<div class="post borderbottom"></div>
 		</div>
 		</div>
 		<br />

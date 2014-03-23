@@ -4,16 +4,17 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
 insecure
 preserve-inputs
 jquery
 font-awesome
 less
 fonts-helveticas
-bootstrap-flatly
 router
 accounts-base
-accounts-password
 accounts-ui
 accounts-twitter
+roles
+accounts-password
+email
+accounts-admin-ui-bootstrap-3

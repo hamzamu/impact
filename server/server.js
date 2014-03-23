@@ -1,5 +1,6 @@
 posts = new Meteor.Collection("posts");
 
+
 	
 	Meteor.publish('posts', function () {
 	   return posts.find({});

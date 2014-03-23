@@ -4,6 +4,7 @@
     "fonts-helveticas": {},
     "router": {},
     "roles": {},
-    "bootstrap-flatly": {}
+    "bootstrap-flatly": {},
+    "accounts-admin-ui-bootstrap-3": {}
   }
 }
