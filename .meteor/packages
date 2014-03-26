@@ -10,11 +10,12 @@ jquery
 font-awesome
 less
 fonts-helveticas
-router
 accounts-base
-accounts-ui
 accounts-twitter
 roles
 accounts-password
 email
 accounts-admin-ui-bootstrap-3
+router
+accounts-ui
+iron-router

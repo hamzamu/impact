@@ -8,19 +8,43 @@ if (Meteor.isClient) {
 	passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 	});
 	
-	Meteor.Router.add({
-	  '/login': 'login',
-	  '/register': 'register',
-	  '/admin': 'admin',
-	  '/map': 'map',
-	  '/admin_all': 'admin_all',
-	  '/adminold': 'adminx',
-	  '/admin/users': 'admin_user',
-	  //'/admin/users': 'users',
-	  '/main': 'page',
-	  '/': 'page',	
-	  '*': '404'
-	});
+	//~ Meteor.Router.add({
+	  //~ '/l': 'login',
+	  //~ '/register': 'register',
+	  //~ '/admin': 'admin',
+	  //~ '/map': 'map',
+	  //~ '/admin_all': 'admin_all',
+	  //~ '/adminold': 'adminx',
+	  //~ '/admin/users': 'admin_user',
+	  //~ //'/admin/users': 'users',
+	  //~ '/main': 'page',
+	  //~ '/': 'page',	
+	  //~ '*': '404'
+	//~ });
+	//~ 
+	//~ 
+	//~ Meteor.Router.filters({
+		//~ 'checkLoggedIn': function(page) {
+			//~ if (Meteor.loggingIn()) {
+				//~ return 'loading';
+			//~ } else if (Meteor.user()) {
+				//~ return 'page';
+			//~ } else {
+				//~ return 'login';
+				//~ 
+			//~ }
+		//~ }
+	//~ });
+	//~ 
+	//~ Meteor.Router.filter('checkLoggedIn', {
+		//~ except: ['page','admin','register']
+	//~ });
+	//~ 
+	
+	
+	Template.page.events({                                                                                                            
+
+		});
 
 
 	Session.setDefault('createError', false);
@@ -58,13 +82,83 @@ if (Meteor.isClient) {
 	};
 	
 	
+	  Template.login.events({
+
+		'click #btnLogOut': function (event, template) {
+				if (Meteor.userId()) {
+				  Meteor.logout();
+				} else {
+				  var userName     = template.find('#username').value,
+					userPassword = template.find('#password').value;
+				  Meteor.loginWithPassword(userName, userPassword, function (error) {
+					  Router.go('/')
+					if (error) {
+					  console.log(error);
+					}
+				  });
+				}
+			  }
+		
+	  });
+	  
+	  Template.page.events({
+		  'click #loginl': function(){
+			  Router.go('/login')
+
+			  },
+			'click #logout': function () {      
+
+			   Meteor.logout();
+			   Router.go('/')
+
+
+			}
+		  
+		  });
+	
+	
 	Template.posts.helpers({
 	 username: function() {	   
 	   var userid = this.author;	  	
 	   var username = Meteor.users.findOne({_id: userid});
 	   return (username);
 	 },
+	    date: function() {
+        date1 = moment(this.created_at).fromNow();
+        date2 = moment(this.created_at).format("MMM Do YY");
+        date = date1 + ' @ ' + date2
+        return date1;
+    },
 	});
+	
+	Template.page.rendered = function(){
+		$('.navbar').localScroll({hash:true, offset: {top: 0},duration: 800, easing:'easeInOutExpo'});
+		}
+	
+	
+	Template.canvmenu.rendered = function() {
+	    $("#my-menu").mmenu({
+			classes: "mm-navy",
+			//classes: "mm-slide mm-light ",
+			//classes: "mm-zoom-page"
+			//classes: "mm-slide-right",
+			//classes: "mm-fullscreen"
+			//modal : true
+			//searchfield: true,
+					
+			});
+	    $("#tooltip-1").mmenu({
+			// mm-bordeau mm-light mm-dark mm-navy mm-army
+			classes:" mm-light",		
+			modal : true,
+			position:'bottom',
+			});
+		
+		$("#close").click(function(){
+		   $("#tooltip-1").trigger("close");
+		  });
+
+	};
 	
   	//~ Template.posts.authorx = function () {
 		//~ return Meteor.users.findOne({fields: {_id: posts.author}});
@@ -95,20 +189,22 @@ if (Meteor.isClient) {
 	Template.posts.editing = function () {
 		return Session.equals('editing_listname', this._id);
 	};
-	
+
+		
+		 
 	Session.setDefault('editing_listname', null);
 	
-	Template.posts.rendered = function(){
-		var $this = $(this.firstNode);
-		$this.addClass("invisible");
-		  Meteor.defer(function() {
-    //instance.currentPosition = newPosition;
-    // bring element back to its new original position
-          $this.css("top",  "0px").removeClass("invisible");
-          $.fadeOut().fadeIn();
-		})
-	
-	}
+	//~ Template.posts.rendered = function(){
+		//~ var $this = $(this.firstNode);
+		//~ $this.addClass("invisible");
+		  //~ Meteor.defer(function() {
+    //~ //instance.currentPosition = newPosition;
+    //~ // bring element back to its new original position
+          //~ $this.css("top",  "0px").removeClass("invisible");
+          //~ $.fadeOut().fadeIn();
+		//~ })
+	//~ 
+	//~ }
 		
 		Template.main.events({
 		'click #btnNewCat': function (e, t) {
@@ -125,6 +221,9 @@ if (Meteor.isClient) {
 			Session.set('adding_category', false);
 			Meteor.flush();
 			
+		}, 
+		'click #close': function () {
+			$('#tooltip-1').trigger( 'close' );			
 		}, 
 		
 		'click #clickme': function() { 

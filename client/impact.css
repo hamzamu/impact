@@ -201,17 +201,40 @@ body, html, .container {
 	border-left:5px solid #777;
 }
 
-#drops div  .cdl {
+.cdl {
 	color:#888;
 	position:relative;
 	float:right;
 	margin:10px;
+	line-height:22px;
 }
-#drops div .cdl2 {
+.cdl span{
+
+	position:relative;
+	float:right;
+	margin:5px;
+	line-height:22px;
+}
+.cdl2 span{
+
+	position:relative;
+	float:right;
+	margin:5px;
+	line-height:22px;
+}
+.tags span{
+
+	position:relative;
+	float:right;
+	margin:5px;
+	line-height:22px;
+}
+.cdl2 {
 	color:#888;
 	position:relative;
 	float:left;
 	margin:10px;
+	line-height:22px;
 }
 
 .deleted{
@@ -290,9 +313,13 @@ ul.icons{
 }
 
 ul.icons li{
-	display:block;
 
+	display: block;
+	height: 60px;
+	width: 60px;
 	margin:0px auto;
+	line-height: 60px;
+	text-align:center;
 	
 }
 
@@ -302,8 +329,8 @@ ul.icons li a{
 	-moz-box-shadow:    1px 1px 3px 0px #dedede;
  	-webkit-box-shadow: 1px 1px 3px 0px #dedede;
  	box-shadow:         1px 1px 3px 0px #dedede;
-	padding:20px;
-	text-align:center;
+
+
 	background:#FFF;	
 	cursor: pointer; cursor: hand;
 	
@@ -604,6 +631,73 @@ admin theme*/
 /*
 peace
 */
-.slimScrollDiv{
-	height:600px;
+
+.mm-panel > div
+{
+	width: 75%;
+	max-width: 650px;
+	padding: 50px 20px;
+	margin: 0 auto;
 }
+.mm-panel > div
+{
+	padding: 30px 0;
+}
+
+#tooltips
+{
+	display: none;
+	position:relative;
+}
+
+
+
+
+/*
+.tip a[href="#page"]
+*/
+.tip a[id="close"]
+{
+	border-radius: 20px;
+	background: #ccc;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	line-height: 28px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+.tip a:hover[id="close"]{
+	background: #d9534f;
+}
+
+/*
+outcan*/
+
+.outcan{
+	display: block;
+	height: 40px;
+	width: 40px;
+	margin:10px;
+	background:#FFF;
+	text-align: center;
+	line-height: 42px;
+	font-size:20px;
+	box-shadow: inset 0 1px 1px hsla(0,0%,100%,.5),3px 3px 0 hsla(0,0%,0%,.1);
+
+}
+a.outcan{
+	color:#999;
+}
+a.outcan:hover{
+	color:#666;
+}
+
+
+

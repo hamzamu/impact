@@ -12,12 +12,19 @@
 		{{#each posts}}		
 			<div class="post {{deleted}} po">
 				
-	     {{#if editing}}
+
+		{{#if currentUser}}
+			{{#if editing}}
              
               <textarea class="list-name-input form-control edit_post" id="edit_post" rows="5" value="{{post}}">{{post}}</textarea>
-           
-          {{else}}
-			<h4 class="edit">{{post}}</h4>
+           	
+           	{{else}}	
+				<h4 class="edit">{{post}}</h4>
+			{{/if}}
+			
+			
+		{{else}}
+				<h4>{{post}}</h4>
 		{{/if}}
 		
 		<!--<p>		
@@ -29,11 +36,7 @@
 		</p>-->
 
 		
-		{{#if username.profile.name}}
-			{{username.profile.name}}		
-		{{else}}
-			{{username.username}}
-		{{/if}}
+		<p class="bs-component"><span class="pull-right">{{date}}</span></p>
 		
 		
 		
@@ -41,20 +44,33 @@
 
 
 
-			<p class="bs-component">
-				{{#if confirmed}}<span class="label label-default">Confirmed</span>{{/if}}
+			<p class="bs-component tags">
+				{{#if confirmed}}<span class=" label label-default">Confirmed</span>{{/if}}
 				{{#if eyewitness}}<span class="label label-primary">Eyewitness</span>{{/if}}
 				{{#if agancies}}<span class="label label-danger">Agancies</span>{{/if}}
 				{{#if social}}<span class="label label-success">Social media</span>{{/if}}
-				{{#if official}}<span class="label label-info">Official</span>{{/if}}
+				{{#if official}}<span class="label label-warning">Official</span>{{/if}}
+				
 			</p>
-			<p>{{ created_at}}</p>
+			
+			
+			
+			{{#if currentUser}}
+			
+			
+			{{#if username.profile.name}}
+				{{username.profile.name}}		
+			{{else}}
+				{{username.username}}
+			{{/if}}
 
 			<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-pushpin"></span></a>
 			<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-map-marker"></span></a>
 			<a href="" class="delete-link cdl"><span class="glyphicon  glyphicon-remove "></span></a>			
 			<a href="" class="edit cdl" ><span class="glyphicon  glyphicon-edit"></span></a>
-						
+				
+			{{/if}}
+					
 			</div>
 		{{/each}}
 		<div class="post borderbottom"></div>

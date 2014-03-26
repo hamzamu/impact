@@ -12,7 +12,19 @@ if (Meteor.isClient) {
 		return Session.equals('editing_listname', this._id);
 	};
 	
-	
+	Template.admin.helpers({
+	 username: function() {	   
+	   var userid = this.author;	  	
+	   var username = Meteor.users.findOne({_id: userid});
+	   return (username);
+	 },
+	    date: function() {
+        date1 = moment(this.created_at).fromNow();
+        date2 = moment(this.created_at).format("MMM Do YY");
+        date = date1 + ' @ ' + date2
+        return date1;
+    },
+	});	
 	
 	Template.admin.rendered = function() {
 	   $('a[rel=tooltip]').tooltip()
@@ -95,6 +107,16 @@ if (Meteor.isClient) {
 			Deps.flush(); // force DOM redraw, so we can focus the edit field
 			posts.update(this._id, {$set: {agancies:''}});		
 		  },
+		  'click .publish ': function () { // start editing list name
+			//Session.set('editing_listname', this._id);
+			Deps.flush(); // force DOM redraw, so we can focus the edit field
+			posts.update(this._id, {$set: {publish:'1'}});		
+		  },
+		  'click .unpublish ': function () { // start editing list name
+			//Session.set('editing_listname', this._id);
+			Deps.flush(); // force DOM redraw, so we can focus the edit field
+			posts.update(this._id, {$set: {publish:''}});		
+		  },
 		  
 		  
 		  'click  .edit': function (e, t) { // start editing list name
@@ -105,6 +127,17 @@ if (Meteor.isClient) {
 			Meteor.flush();	
 			
 		  },
+		  
+		 'click .delete-link': function() {
+			//if (confirm('Are you sure you want to remove this.')) {
+				//if (confirm('are you sure you want to leave?'))  { 
+				 //$(this._id).fadeOut().fadeIn();
+				 posts.remove(this._id);
+				 Meteor.flush();
+			  //}
+			//}				
+		  },
+		  
 		  
 		'keyup .list-name-input': function(e,t){
 			 if (e.which === 13){
