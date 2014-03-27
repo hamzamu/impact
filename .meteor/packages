@@ -12,10 +12,9 @@ less
 fonts-helveticas
 accounts-base
 accounts-twitter
-roles
 accounts-password
 email
-accounts-admin-ui-bootstrap-3
 router
 accounts-ui
-iron-router
+filter-collections
+roles
