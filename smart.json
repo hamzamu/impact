@@ -2,10 +2,8 @@
   "packages": {
     "font-awesome": {},
     "fonts-helveticas": {},
-    "roles": {},
     "bootstrap-flatly": {},
-    "accounts-admin-ui-bootstrap-3": {},
     "router": {},
-    "iron-router": {}
+    "filter-collections": {}
   }
 }

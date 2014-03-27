@@ -2,7 +2,7 @@
 
 
 body, html, .container-fluid { 
-  height: 100%;
+
 }
 
 
@@ -699,5 +699,9 @@ a.outcan:hover{
 	color:#666;
 }
 
-
+#many{
+	position:fixed;
+	position:absolute;
+	top:2px;left:2px;
+}
 

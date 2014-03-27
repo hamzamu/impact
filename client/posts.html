@@ -53,16 +53,16 @@
 				
 			</p>
 			
-			
-			
-			{{#if currentUser}}
-			
-			
-			{{#if username.profile.name}}
+			<p>{{#if username.profile.name}}
 				{{username.profile.name}}		
 			{{else}}
-				{{username.username}}
-			{{/if}}
+				{{username.username}} 
+			{{/if}}		
+			
+			{{#if currentUser}}</p>
+			
+			
+
 
 			<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-pushpin"></span></a>
 			<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-map-marker"></span></a>
