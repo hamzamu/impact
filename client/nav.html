@@ -48,21 +48,29 @@
                 </li>-->
                 
                 
-                  <li class="pull-right"><a>
-					{{#if currentUser}}
-					welcome 
-				  {{else}}
-				    
-				  {{/if}}
-				  
-				  {{ loginButtons align="right"}}</a>
-				  </li>
+                 
+
+
                 
  
 
               
                 
               </ul>
+              
+                   <ul class="nav navbar-nav pull-right">                  
+					  
+
+					{{#if currentUser}}
+					
+				  {{else}}
+				    
+				  {{/if}}
+				  
+				  {{ loginButtons align="right"}}</a>
+				  </li></ul>
+				  
+				  
             </div>
           </div>
         </div>

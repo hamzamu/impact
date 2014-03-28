@@ -1,30 +1,12 @@
 <template name="admin">		
-        <!-- header logo: style can be found in header.less -->
-		{{> navtop}}
-		
-		<div class="wrapper row-offcanvas row-offcanvas-left skin-black contentx">
-            <!-- Left side column. contains the logo and sidebar -->
-			
-			{{> navside}}
-			<!-- Right side column. Contains the navbar and content of the page -->
-            <aside class="right-side ">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        Dashboard
-                        <small>Control panel</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
-                </section>
+
 
 
                 <!-- Main content -->
-                <section class="content">
+                <div class="margintop"></div>
+                <section class="container">
 
-				<!--{{> noti}}
+
 				<!-- top row -->
 
 
@@ -49,17 +31,19 @@
 									
 								
 
-						<div class="box box-solid">
-							<div class="box-body"><textarea class="list-name-input form-control" id="add_new_post" rows="4"></textarea></div>
+						<div class="panel panel-default">
+							<div class="panel-body"><textarea class="list-name-input form-control" id="add_new_post" rows="4"></textarea></div>
 						</div>
 											  
 											  
-										
+						<div class="">				
 								
 						{{#each posts}}	
                             <div class="box box-solid">
 
-								<div class="box-body">
+								<div class="panel panel-default">
+									
+									<div class="panel-body">
 									
 									 {{#if editing}}
 										 
@@ -98,6 +82,8 @@
 
 											  
 										{{/if}}
+										
+										</div>
 									
 								</div>
 								
@@ -106,7 +92,7 @@
 
                            
                            {{/each}}
-                           
+                           </div>
 						</section><!-- /.Left col -->
 						
 						
@@ -135,10 +121,7 @@
                     </div><!-- /.row (main row) -->
 
                 </section><!-- /.content -->
-            </aside><!-- /.right-side -->
-        </div><!-- ./wrapper -->
 
-        <!-- add new calendar event modal -->
 
 
 

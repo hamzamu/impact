@@ -36,11 +36,7 @@ if (Meteor.isClient) {
   	Template.admin.posts = function () {
 		return posts.find({}, {sort: {created_at: -1}});		
 	};
-  	Template.users.users = function () {
-		return Meteor.users.find({});
-		//return Meteor.users.find({_id: this.userId},{fields: {'other': 1, 'things': 1}});	
-		
-	};
+
 	
 	Template.admin.admin = function(){
 			return Session.get('admin');

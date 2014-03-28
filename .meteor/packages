@@ -5,16 +5,16 @@
 
 standard-app-packages
 insecure
-preserve-inputs
 jquery
 font-awesome
 less
 fonts-helveticas
 accounts-base
-accounts-twitter
 accounts-password
 email
 router
-accounts-ui
 filter-collections
 roles
+moment
+bootstrap-3
+accounts-ui-bootstrap-3

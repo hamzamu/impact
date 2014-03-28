@@ -4,6 +4,10 @@
     "fonts-helveticas": {},
     "bootstrap-flatly": {},
     "router": {},
-    "filter-collections": {}
+    "filter-collections": {},
+    "roles": {},
+    "moment": {},
+    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }
