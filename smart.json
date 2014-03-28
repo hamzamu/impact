@@ -8,6 +8,7 @@
     "roles": {},
     "moment": {},
     "bootstrap-3": {},
-    "accounts-ui-bootstrap-3": {}
+    "accounts-ui-bootstrap-3": {},
+    "accounts-admin-ui-bootstrap-3": {}
   }
 }

@@ -8,8 +8,13 @@ posts = new Meteor.Collection("posts");
 	});
 	
 
-	
 
+    Template.users.helpers({
+        // check if user is an admin
+        isAdminUser: function() {
+            return Roles.userIsInRole(Meteor.user(), ['admin']);
+        }
+    })
 
 
 	Session.setDefault('createError', false);
