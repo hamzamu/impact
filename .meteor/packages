@@ -12,10 +12,9 @@ fonts-helveticas
 accounts-base
 accounts-password
 email
-router
 filter-collections
 roles
 moment
-accounts-ui-bootstrap-3
 accounts-admin-ui-bootstrap-3
-bootstrap-flatly
+router
+accounts-ui-bootstrap-3
