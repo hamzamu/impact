@@ -8,13 +8,11 @@ insecure
 jquery
 font-awesome
 less
-fonts-helveticas
 accounts-base
 accounts-password
 email
-filter-collections
 roles
 moment
 accounts-admin-ui-bootstrap-3
-router
-accounts-ui-bootstrap-3
+iron-router
+accounts-ui

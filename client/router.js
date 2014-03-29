@@ -1,15 +1,15 @@
-	Meteor.Router.add({
-	  '/login': 'login',
-	  '/register': 'register',
-	  '/admin': 'admin',
-	  '/map': 'map',
-	  '/admin_all': 'admin_all',
-	  '/adminold': 'adminx',
-	  '/users': 'users',
-	  '/main': 'page',
-	  '/': 'page',	
-	  '*': '404'
-	});
+	//~ Meteor.Router.add({
+	  //~ '/login': 'login',
+	  //~ '/register': 'register',
+	  //~ '/admin': 'admin',
+	  //~ '/map': 'map',
+	  //~ '/admin_all': 'admin_all',
+	  //~ '/adminold': 'adminx',
+	  //~ '/users': 'users',
+	  //~ '/main': 'page',
+	  //~ '/': 'page',	
+	  //~ '*': '404'
+	//~ });
 	
 	
 	//~ Meteor.Router.filters({

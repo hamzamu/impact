@@ -19,18 +19,14 @@
                    <ul class="nav navbar-nav pull-right">                  
 					  
 
-					{{#if currentUser}}
+				 <li><a>{{#if currentUser}}
 					
 				  {{else}}
 				    
 				  {{/if}}
 				  
-				  {{ loginButtons }}
-				  </ul>
-				  
-				  
-           
-         
+				  {{> loginButtons }}</a></li>
+				  </ul>         
         </div>
         </div>
         </div>

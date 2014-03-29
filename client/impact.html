@@ -16,19 +16,33 @@
 
 <body>
 
-    <!--yield}} 	-->
+    <!--yield}}  renderPage}}	-->
     
-    {{renderPage}}
+  {{#Layout template="MyLayout"}}
+
+  {{/Layout}}
 
 </body>
+
+
+<template name="MyLayout">
+
+
+
+    {{> yield "page"}}
+ 
+
+
+</template>
 
 
 <template name="page">
 	
 
 	
-<div class="container-fluid" id="many">
+
 <!--
+<div class="container-fluid" id="many">
 		<div class="row">
 		<a href="" class="outcan"><i class="glyphicon glyphicon-align-justify"></i></a>
 
@@ -49,8 +63,9 @@
 
 		
 		</div>
+		</div>
 -->
-</div>
+
 	
 
 	<div class="margintop"></div>
