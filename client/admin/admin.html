@@ -1,132 +1,73 @@
 <template name="admin">		
 
-
-
-                <!-- Main content -->
-                <div class="margintop"></div>
-                <section class="container">
-
-
-				<!-- top row -->
-
-
-                    <!-- Main row -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-lg-5 col-xs-12 col-md-12 "> 
-                            <!-- Box (with bar chart) -->
-							<!-- Custom tabs (Charts with tabs)-->
-							<!-- Calendar -->
-							<!-- quick email widget -->
-							
-							
-						<section class="">
-
-							<ol class="breadcrumb">
-								<li><a href="#">published</a></li>
-								<li class="active"><a href="#">pending</a></li>
-								<li class="active"><a href="#">reporters</a></li>
-							</ol>
-						</section>
-									
-								
-
-						<div class="panel panel-default">
-							<div class="panel-body"><textarea class="list-name-input form-control" id="add_new_post" rows="4"></textarea></div>
-						</div>
-											  
-											  
-						<div class="">				
-								
-						{{#each posts}}	
-                            <div class="box box-solid">
-
-								<div class="panel panel-default">
-									
-									<div class="panel-body">
-									
-									 {{#if editing}}
-										 
-										  <textarea class="list-name-input form-control edit_post" id="edit_post" rows="4" value="{{status}}">{{post}}</textarea>
-							 
-									  {{else}}
-										
-										 
-											<h4 class="edit">
-											
-												{{post}}
-												
-											</h4>
-											<p class="list-group-item-text small">{{date}}</p>
-											<br />
-
-											<p class="bs-component mouse_hand">
-												
-												{{#if confirmed}}<span class="unconfirm label label-info ">Confirmed</span>{{else}}<span class="confirm label label-default">Confirm</span>{{/if}}										
-												{{#if eyewitness}}<span class="uneyewitness label label-primary">Eyewitness</span>{{else}}<span class="eyewitness label label-default">Eyewitness</span>{{/if}}
-												{{#if agancies}}<span class="unagancies label label-danger">Agencies</span>{{else}}<span class="agancies label label-default">Agencies</span>{{/if}}					
-												{{#if social}}<span class="unsocial label label-success">Social</span>{{else}}<span class="social label label-default">Social</span>{{/if}}					
-												{{#if official}}<span class="unofficial label label-warning">Official</span>{{else}}<span class="official label label-default">Official</span>{{/if}}
-												
-											</p>
-											
-										  
-										
-										<p style="overflow:hidden;">
-										<!--<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-pushpin"></span></a>
-										<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-map-marker"></span></a>-->
-										{{#if publish}}<a href="" class="unpublish cdl"><span class="label label-success">published</span> </a>{{else}}<a href="" class="publish cdl"><span class="label label-warning">publish this</span>  </a>{{/if}}													
-										<a href="" class="delete-link cdl2"><span class="glyphicon  glyphicon-remove "></span></a>			
-										<a href="" class="edit cdl" ><span class="glyphicon  glyphicon-edit"></span></a>		
-										</p>
-
-											  
-										{{/if}}
-										
-										</div>
-									
-								</div>
-								
-
-                            </div><!-- /.box (chat box) -->
-
-                           
-                           {{/each}}
-                           </div>
-						</section><!-- /.Left col -->
-						
-						
-                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                        <section class="col-md-1 hidden-xs hidden-sm">
-							<ul class="icons" style="position: fixed;">			
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="red bordertop"><span class="glyphicon bs-glyphicons  glyphicon-briefcase"></span></a></li>
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="blue"><span class="glyphicon bs-glyphicons  glyphicon-calendar"></span></a></li>
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="bree"><span class="glyphicon bs-glyphicons  glyphicon-cog"></span></a></li>
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="zree borderbottom"><span class="glyphicon bs-glyphicons  glyphicon-user"></span></a></li>									
-							</ul>	
-
-                        </section><!-- right col -->
-                        
-                         <section class="col-lg-4">
-
-						
-
-
-                            
-                                                                             
-                         
-                         </section><!---section-->
-                         
-                         
-                    </div><!-- /.row (main row) -->
-
-                </section><!-- /.content -->
-
-
-
-
-   
-
-
+    <!-- Main content -->
+    <div class="margintop"></div>
+    <section class="container">
+        <!-- top row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-5 col-xs-12 col-md-12 "> 
+                <!-- Box (with bar chart) -->
+                <!-- Custom tabs (Charts with tabs)-->
+                <!-- Calendar -->
+                <!-- quick email widget -->
+                <section class="">
+                    <ol class="breadcrumb">
+                        <li><a href="#">published</a></li>
+                        <li class="active"><a href="#">pending</a></li>
+                        <li class="active"><a href="#">reporters</a></li>
+                    </ol>
+                </section>
+                <div class="panel panel-default">
+                    <div class="panel-body"><textarea class="list-name-input form-control" id="add_new_post" rows="4"></textarea></div>
+                </div>
+                <div class="">				
+                    {{#each posts}}	
+                    <div class="box box-solid">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{#if editing}}
+                                <textarea class="list-name-input form-control edit_post" id="edit_post" rows="4" value="{{status}}">{{post}}</textarea>
+                                {{else}}
+                                <h4 class="edit">
+                                    {{post}}
+                                </h4>
+                                <p class="list-group-item-text small">{{date}}</p>
+                                <br />
+                                <p class="bs-component mouse_hand">
+                                {{#if confirmed}}<span class="unconfirm label label-info ">Confirmed</span>{{else}}<span class="confirm label label-default">Confirm</span>{{/if}}										
+                                {{#if eyewitness}}<span class="uneyewitness label label-primary">Eyewitness</span>{{else}}<span class="eyewitness label label-default">Eyewitness</span>{{/if}}
+                                {{#if agancies}}<span class="unagancies label label-danger">Agencies</span>{{else}}<span class="agancies label label-default">Agencies</span>{{/if}}					
+                                {{#if social}}<span class="unsocial label label-success">Social</span>{{else}}<span class="social label label-default">Social</span>{{/if}}					
+                                {{#if official}}<span class="unofficial label label-warning">Official</span>{{else}}<span class="official label label-default">Official</span>{{/if}}
+                                </p>
+                                <p style="overflow:hidden;">
+                                <!--<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-pushpin"></span></a>
+                                <a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-map-marker"></span></a>-->
+                                {{#if publish}}<a href="" class="unpublish cdl"><span class="label label-success">published</span> </a>{{else}}<a href="" class="publish cdl"><span class="label label-warning">publish this</span>  </a>{{/if}}													
+                                <a href="" class="delete-link cdl2"><span class="glyphicon  glyphicon-remove "></span></a>			
+                                <a href="" class="edit cdl" ><span class="glyphicon  glyphicon-edit"></span></a>		
+                                </p>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div><!-- /.box (chat box) -->
+                    {{/each}}
+                </div>
+            </section><!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-md-1 hidden-xs hidden-sm">
+                <ul class="icons" style="position: fixed;">			
+                    <li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="red bordertop"><span class="glyphicon bs-glyphicons  glyphicon-briefcase"></span></a></li>
+                    <li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="blue"><span class="glyphicon bs-glyphicons  glyphicon-calendar"></span></a></li>
+                    <li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="bree"><span class="glyphicon bs-glyphicons  glyphicon-cog"></span></a></li>
+                    <li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="zree borderbottom"><span class="glyphicon bs-glyphicons  glyphicon-user"></span></a></li>									
+                </ul>	
+            </section><!-- right col -->
+            <section class="col-lg-4">
+            </section><!---section-->
+        </div><!-- /.row (main row) -->
+    </section><!-- /.content -->
 
 </template>

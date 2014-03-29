@@ -12,9 +12,9 @@ fonts-helveticas
 accounts-base
 accounts-password
 email
-router
 filter-collections
 roles
-moment
 bootstrap-3
 accounts-ui-bootstrap-3
+iron-router
+moment

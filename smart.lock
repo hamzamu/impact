@@ -5,12 +5,11 @@
       "font-awesome": {},
       "fonts-helveticas": {},
       "bootstrap-flatly": {},
-      "router": {},
       "filter-collections": {},
       "roles": {},
-      "moment": {},
       "bootstrap-3": {},
-      "accounts-ui-bootstrap-3": {}
+      "accounts-ui-bootstrap-3": {},
+      "moment": {}
     },
     "packages": {
       "font-awesome": {
@@ -28,11 +27,6 @@
         "tag": "v0.0.3",
         "commit": "ca8eb1730f1090b8d6e0db75efbe566a2ff27ee7"
       },
-      "router": {
-        "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.5.4.1",
-        "commit": "d00e380dda2184b70e909fc4a0fb5358d602c586"
-      },
       "filter-collections": {
         "git": "https://github.com/julianmontagna/filter-collections.git",
         "tag": "v0.1.4",
@@ -40,13 +34,8 @@
       },
       "roles": {
         "git": "https://github.com/alanning/meteor-roles.git",
-        "tag": "v1.2.6",
-        "commit": "f2a9058281f8f2fe028767841d7445aadd6893cf"
-      },
-      "moment": {
-        "git": "https://github.com/acreeger/meteor-moment.git",
-        "tag": "v2.5.1",
-        "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
+        "tag": "v1.2.8",
+        "commit": "68844ba216c348d332bdb840825850f497f515bb"
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
@@ -58,15 +47,10 @@
         "tag": "v0.2.6",
         "commit": "f3ee0ef6bc506314e19585550b4f9f5620c4ada6"
       },
-      "page-js-ie-support": {
-        "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
-        "tag": "v1.3.5",
-        "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
-      },
-      "HTML5-History-API": {
-        "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
-        "tag": "v4.0.0",
-        "commit": "dc4965f1424cfca625ec3fbea17eace03f8e32c5"
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.5.1",
+        "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
       }
     }
   }
