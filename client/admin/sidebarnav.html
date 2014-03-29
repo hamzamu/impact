@@ -1,128 +1,26 @@
-            <template name="navside">
-            <aside class="left-side sidebar-offcanvas hidden-xs hidden-sm" style="position: fixed;">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="img/avatar.png" class="img-circle" alt="User Image" />
-                        </div>
-                        <div class="pull-left info">
-                            <p>Hello, Hamza</p>
+<template name="admin_nav">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">Start Bootstrap</a>
+                </li>
+                <li><a href="/admin"><i class="glyphicon glyphicon-th-large"></i>  Dashboard</a>
+                </li>
+                <li><a href="/admin"><i class="glyphicon glyphicon-pencil"></i>   Content Manager</a>
+                </li>
+                <li><a href="/users"><i class="glyphicon glyphicon-user"></i>   User Manager</a>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-file"></i>   Pages Manager</a>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-cog"></i>   Settings</a>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-search"></i>   SEO</a>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-tree-conifer"></i>   Design settings</a>
+                </li>
+                <li><a href="/"><i class="glyphicon glyphicon-globe"></i>   View site</a>
+                </li>
+            </ul>
+        </div>
 
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
-                    <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="active">
-                            <a href="index.html">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>News</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>News Manager</span>
-                                <small class="badge pull-right bg-yellow">12</small>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Pending </a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Unconfirmed </a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Unpublished </a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Reporters </a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>Real-time Monitor</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Web Monitor</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Statistics</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Archive</span>
-                                <small class="badge pull-right bg-red">3</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/mailbox.html">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/mailbox.html">
-                                <i class="fa fa-user"></i> <span>Users Management</span>
-                                <small class="badge pull-right bg-yellow">12</small>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-folder"></i> <span>System settings</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
-                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                                <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                                <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                                <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-            
-            
-            </template>
-
-          
+		<a id="menu-toggle" href="#" class="outcan"><i class="glyphicon glyphicon-list"></i></a>
+</template>

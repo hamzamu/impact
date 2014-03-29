@@ -2,42 +2,48 @@
 
 
 
-                <!-- Main content -->
-                <div class="margintop"></div>
-                <section class="container">
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+		{{> admin_nav}}
+		
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+
+            <!-- Keep all page content within the page-content inset div! -->
+            <div class="page-content inset">
+                <div class="row">
+                    <div class="col-md-12">
+                      	
+					{{> posts_admin}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
 
 
-				<!-- top row -->
+
+</template>
 
 
-                    <!-- Main row -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-lg-5 col-xs-12 col-md-12 "> 
-                            <!-- Box (with bar chart) -->
-							<!-- Custom tabs (Charts with tabs)-->
-							<!-- Calendar -->
-							<!-- quick email widget -->
-							
-							
-						<section class="">
 
-							<ol class="breadcrumb">
-								<li><a href="#">published</a></li>
-								<li class="active"><a href="#">pending</a></li>
-								<li class="active"><a href="#">reporters</a></li>
-							</ol>
-						</section>
-									
-								
 
+<template name="posts_admin">
+						
+						<h3>Manage posts</h3>
+						
 						<div class="panel panel-default">
 							<div class="panel-body"><textarea class="list-name-input form-control" id="add_new_post" rows="4"></textarea></div>
 						</div>
 											  
 											  
-						<div class="">				
-								
+			
+		
 						{{#each posts}}	
                             <div class="box box-solid">
 
@@ -92,41 +98,4 @@
 
                            
                            {{/each}}
-                           </div>
-						</section><!-- /.Left col -->
-						
-						
-                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                        <section class="col-md-1 hidden-xs hidden-sm">
-							<ul class="icons" style="position: fixed;">			
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="red bordertop"><span class="glyphicon bs-glyphicons  glyphicon-briefcase"></span></a></li>
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="blue"><span class="glyphicon bs-glyphicons  glyphicon-calendar"></span></a></li>
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="bree"><span class="glyphicon bs-glyphicons  glyphicon-cog"></span></a></li>
-								<li class="ico" data-toggle="tooltip" data-placement="right" data-original-title="Archive"><a href="" class="zree borderbottom"><span class="glyphicon bs-glyphicons  glyphicon-user"></span></a></li>									
-							</ul>	
-
-                        </section><!-- right col -->
-                        
-                         <section class="col-lg-4">
-
-						
-
-
-                            
-                                                                             
-                         
-                         </section><!---section-->
-                         
-                         
-                    </div><!-- /.row (main row) -->
-
-                </section><!-- /.content -->
-
-
-
-
-   
-
-
-
 </template>

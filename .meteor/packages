@@ -16,6 +16,6 @@ router
 filter-collections
 roles
 moment
-bootstrap-3
 accounts-ui-bootstrap-3
 accounts-admin-ui-bootstrap-3
+bootstrap-flatly

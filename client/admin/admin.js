@@ -1,4 +1,4 @@
-if (Meteor.isClient) {
+
 	
 	
 
@@ -10,11 +10,11 @@ if (Meteor.isClient) {
 	Meteor.subscribe("allUserData");
 	
 	
-	Template.admin.editing = function () {
+	Template.posts_admin.editing = function () {
 		return Session.equals('editing_listname', this._id);
 	};
 	
-	Template.admin.helpers({
+	Template.posts_admin.helpers({
 	 username: function() {	   
 	   var userid = this.author;	  	
 	   var username = Meteor.users.findOne({_id: userid});
@@ -33,7 +33,7 @@ if (Meteor.isClient) {
 	//~ };
 	
 
-  	Template.admin.posts = function () {
+  	Template.posts_admin.posts = function () {
 		return posts.find({}, {sort: {created_at: -1}});		
 	};
 
@@ -43,7 +43,16 @@ if (Meteor.isClient) {
 		};
 		
 		
-	Template.admin.events({
+	Template.admin_nav.events({
+	     'click #menu-toggle': function (e){
+			 e.preventDefault();
+			 $("#wrapper").toggleClass("active");			 
+			 }		
+		
+		})
+		
+		
+	Template.posts_admin.events({
 
 		  'click .confirm ': function () { // start editing list name
 			//Session.set('editing_listname', this._id);
@@ -164,10 +173,13 @@ if (Meteor.isClient) {
 					
 				if(evt.which ==27){$('#add_new_post').val("").focusout();}
 	     },
-		
+
+		  //~ $("#menu-toggle").click(function(e) {
+			//~ e.preventDefault();
+			//~ $("#wrapper").toggleClass("active");
+			//~ });
 			
 
 		});
 
 	
-	}
