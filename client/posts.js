@@ -45,7 +45,7 @@
 		Session.set('adding_category', true);
 		Meteor.flush();		
 		$('#add-post').fadeIn("slow");	
-		focusText(t.find("#add-post"));
+		//focusText(t.find("#add-post"));
 		Session.set('createError', false);
 		Meteor.flush();
 		}, 
@@ -56,9 +56,7 @@
 			Meteor.flush();
 			
 		}, 
-		'click #close': function () {
-			$('#tooltip-1').trigger( 'close' );			
-		}, 
+
 		
 		'click #clickme': function() { 
 			Session.set('open', true);
@@ -78,6 +76,7 @@
 		  		  
 		  'click  .edit': function (e, t) { // start editing list name
 			Session.set('editing_listname', this._id);			
+			//$('.edit_post').focus();
 			$('.edit_post').focus();
 			//var wi = template.find(".edit_post");	
 			//wi.focus();
@@ -90,8 +89,8 @@
 				var catVal = String(e.target.value || "");					
 				posts.update(this._id, {$set: {post:catVal}});					
 				Session.set('editing_listname', null);
-				Session.set("createError","You Edit this");
-				Meteor.setTimeout(function() {$('#error').fadeOut();}, 3000)			
+				//~ Session.set("createError","You Edit this");
+				//~ Meteor.setTimeout(function() {$('#error').fadeOut();}, 3000)			
 
 			}
 			

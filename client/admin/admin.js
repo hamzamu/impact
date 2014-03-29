@@ -164,6 +164,7 @@
 		'keyup #add_new_post': function (evt,tmpl){
 				if(evt.which ==13){
 					var post = tmpl.find('#add_new_post').value;
+					//var post = tmpl.find('#add_new_post').value;
 					posts.insert({
 						post:post,
 						created_at: new Date(),
