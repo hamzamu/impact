@@ -11,8 +11,9 @@ Template.posts.posts = function () {
 
 
 
+
 //get user name or profile name
-Template.posts.helpers({
+Template.post.helpers({
     username: function () {
         var userid = this.author;
         var username = Meteor.users.findOne({
@@ -21,12 +22,18 @@ Template.posts.helpers({
         return (username);
     },
     date: function () {
-        date1 = moment(this.created_at).fromNow();
-        date2 = moment(this.created_at).format("MMM Do YY");
-        date = date1 + ' @ ' + date2
-        return date1;
+        date = moment(this.created_at).fromNow();
+        return date;
+    },
+    postin: function () {
+        var posti = this.post;
+        //var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
+        return posti;
+
     },
 });
+
+
 
 
 // publish from the front page
@@ -41,77 +48,29 @@ Template.main.new_cat = function () {
 
 Session.setDefault('editing_listname', null);
 
-Template.posts.editing = function () {
+Template.post.editing = function () {
     return Session.equals('editing_listname', this._id);
 };
 
-//home page post events
 Template.main.events({
     'click #btnNewCat': function (e, t) {
         Session.set('adding_category', true);
         Meteor.flush();
-        $('#add-post').fadeIn("slow");
-        //focusText(t.find("#add-post"));
-        Session.set('createError', false);
-        Meteor.flush();
+        $("#add-post-front").focus();
+
     },
 
 
     'click #newpostclose': function (e, t) {
-        Session.set('adding_category', false);
-        Meteor.flush();
-
+        $("#add-post-front").slideUp();
+        Meteor.setTimeout(function () {
+            Session.set('adding_category', false);
+        }, 500)
     },
 
 
-    'click #clickme': function () {
-        Session.set('open', true);
-        $('#clickme').fadeOut();
-    },
-
-    'click .delete-link': function () {
-        //if (confirm('Are you sure you want to remove this.')) {
-        //if (confirm('are you sure you want to leave?'))  {
-        //$(this._id).fadeOut().fadeIn();
-        posts.remove(this._id);
-        Meteor.flush();
-        //}
-        //}
-    },
-
-
-    'click  .edit': function (e, t) { // start editing list name
-        Session.set('editing_listname', this._id);
-        //$('.edit_post').focus();
-        $('.edit_post').focus();
-        //var wi = template.find(".edit_post");
-        //wi.focus();
-        Meteor.flush();
-
-    },
-
-    'keyup .list-name-input': function (e, t) {
-        if (e.which === 13) {
-            var catVal = String(e.target.value || "");
-            posts.update(this._id, {
-                $set: {
-                    post: catVal
-                }
-            });
-            Session.set('editing_listname', null);
-            //~ Session.set("createError","You Edit this");
-            //~ Meteor.setTimeout(function() {$('#error').fadeOut();}, 3000)
-
-        }
-
-        if (e.which === 27) {
-            Session.set('editing_listname', false);
-        }
-
-    },
-
-
-    'keyup #add-post': function (e, t) {
+    //add post
+    'keyup #add-post-front': function (e, t) {
         if (e.which === 13) {
             var catVal = String(e.target.value || "");
             if (catVal) {
@@ -125,7 +84,11 @@ Template.main.events({
                         //author : Meteor.user()._id
                         author: Meteor.userId(),
                     });
-                    Session.set('adding_category', false);
+                    //$('#add-post').fadeOut();
+                    $("#add-post-front").slideUp("slow");
+                    Meteor.setTimeout(function () {
+                        Session.set('adding_category', false);
+                    }, 500)
                     //$(event.target).slideUp('slow');
                     //$('#posts' + event.currentTarget.id).slideUp('slow');
                     //$(this._id).slideUp('slow');
@@ -145,9 +108,60 @@ Template.main.events({
             }
         }
         if (e.which === 27) {
-            Session.set('adding_category', false);
+
+            $("#add-post-front").slideUp();
+            Meteor.setTimeout(function () {
+                Session.set('adding_category', false);
+            }, 500)
 
         }
 
     },
+
+});
+//home page post events
+Template.post.events({
+
+
+
+
+
+    'click .delete-link': function () {
+        //if (confirm('Are you sure you want to remove this.')) {
+        //(confirm('are you sure you want to leave?'))  {
+        //$(this._id).fadeOut().fadeIn();
+        posts.remove(this._id);
+        //}
+        //}
+    },
+
+
+    //edit open session to edit 
+    'click  .edit': function (e, t) { // start editing list name
+        Session.set('editing_listname', this._id);
+
+        Meteor.flush();
+        $('.edit_post').focus();
+
+
+    },
+
+    // edit in place 
+    'keyup .list-name-input': function (e, t) {
+        if (e.which === 13) {
+            var catVal = String(e.target.value || "");
+            posts.update(this._id, {
+                $set: {
+                    post: catVal
+                }
+            });
+            Session.set('editing_listname', null);
+        }
+
+        if (e.which === 27) {
+            Session.set('editing_listname', false);
+        }
+
+    },
+
 });

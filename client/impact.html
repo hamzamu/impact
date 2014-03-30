@@ -20,7 +20,18 @@
 
 
 
-    {{#Layout template="MyLayout"}} {{/Layout}}
+    {{#Layout template="MyLayout"}} 
+    
+    
+    {{#contentFor region="header"}}
+
+    {{/contentFor}}    
+    
+    {{#contentFor region="footer"}}
+
+    {{/contentFor}}
+    
+    {{/Layout}}
 
 </body>
 
@@ -45,11 +56,13 @@
 
 
 
-    <div class="container">
+    
 
-        {{> nav}} {{> main}}
+        {{> nav}} 
+        
+        {{> main}}
 
-    </div>
+    
 
 
 </template>
@@ -57,25 +70,16 @@
 
 
 
-
 <template name="main">
 
-
-
-
     <div class="row">
-
 
         {{> searchnav}}
 
         <!--<div class="{{open}}" id="clickme">Click me!</div>-->
 
 
-
         <div class="col-md-6 ">
-
-
-
 
 
             {{#if error}}
@@ -98,10 +102,9 @@
                 <div class="addo borderbottom panel-body">
                     <div id="add-post-form" class="post_for">
                         {{#if new_cat}}
-
-
+                        
                         <p>
-                            <textarea class="form-control" id="add-post" rows="3"></textarea>
+                            <textarea class="form-control" id="add-post-front" rows="3"></textarea>
                         </p>
                         <p>
                             <a class="btn btn-default" id="newpostclose">

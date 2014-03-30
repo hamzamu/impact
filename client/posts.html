@@ -6,7 +6,17 @@
 		<div class="post bordertop"></div>
 
             {{#each posts}}
-			<div class="post {{deleted}} po">
+            {{>post}}
+		{{/each}}
+		<div class="post borderbottom"></div>
+		</div>
+
+		<br />
+</template>
+
+
+<template name='post'>
+<div class="post {{deleted}} po">
 
 		{{#if currentUser}}
 			{{#if editing}}
@@ -14,12 +24,16 @@
               <textarea class="list-name-input form-control edit_post" id="edit_post" rows="5" value="{{post}}">{{post}}</textarea>
 
            	{{else}}
-				<h4 class="">{{post}}<a href="{{pathFor 'postShow'}}"><i class="glyphicon  glyphicon-pushpin"></i></a></h4>
+				<h4>{{#markdown}}{{postin}}{{/markdown}}</h4>
+
 			{{/if}}
 
 
 		{{else}}
-				<h4><a href="{{pathFor 'postShow'}}">{{post}}</a></h4>
+				<!--<h4><a href="{{pathFor 'postShow'}}">{{post}}</a></h4>-->
+                <h4>{{#markdown}}{{postin}}{{/markdown}}</h4>
+    {{post}}
+ 
 		{{/if}}
 
 		<p class="bs-component"><span class="pull-right">{{date}}</span></p>
@@ -32,6 +46,10 @@
 				{{#if official}}<span class="label label-warning">Official</span>{{/if}}
 
 			</p>
+                
+                <a href="{{pathFor 'postShow'}}">Go!</a>
+                
+                
 
 			<p>{{#if username.profile.name}}
 				{{username.profile.name}}
@@ -50,16 +68,21 @@
 			{{/if}}
 
 			</div>
-		{{/each}}
-		<div class="post borderbottom"></div>
-		</div>
-
-		<br />
 </template>
 
+<template name="postshow">
+    {{>nav}}
+    <br />
+    <br />
+    <br />
+    {{post}}
 
-<template name='postShow'>
+    {{date}}
     
-    {{body}}
+			<p>
+				{{username.profile.name}}
+		
+				{{username.username}}
+				</p>
 
 </template>

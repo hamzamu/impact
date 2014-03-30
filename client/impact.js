@@ -1,15 +1,8 @@
 posts = new Meteor.Collection("posts");
 
-
-
-
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 });
-
-
-
-
 
 Template.users.helpers({
     // check if user is an admin
@@ -43,13 +36,6 @@ Meteor.subscribe("directory");
 //~ }
 //~ });
 //~ });
-
-
-
-
-
-
-
 
 
 Template.page.rendered = function () {
@@ -107,14 +93,6 @@ Template.main.open = function () {
         return 'open';
     }
 };
-Template.posts.deleted = function () {
-    return Session.equals('deleted', this._id) ? "deleted" : '';
-};
-
-
-
-
-
 
 
 //~ Template.posts.rendered = function(){
@@ -128,7 +106,6 @@ Template.posts.deleted = function () {
 //~ })
 //~
 //~ }
-
 
 
 function focusText(i, val) {

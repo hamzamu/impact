@@ -1,8 +1,3 @@
-
-
-
-
-
 	Session.setDefault('admin','Dashboard');
 	Session.setDefault('depadge','Dashboard');
 	Session.setDefault('editing_listname', null);
@@ -38,9 +33,6 @@
 	};
 
 
-	Template.admin.admin = function(){
-			return Session.get('admin');
-		};
 
 
 	Template.admin_nav.events({
