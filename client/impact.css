@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 
 
-body, html, .container-fluid { 
+body, html, .container-fluid {
 
 }
 
@@ -32,7 +32,7 @@ body, html, .container-fluid {
 }
 .put_menu:hover{
 
-	background:#F5F6F6;	
+	background:#F5F6F6;
  -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -46,16 +46,16 @@ background: url("/close_16.png") no-repeat 0 center;
 */
 
 .done{
-	
+
 }
 .done .text{
     text-decoration: line-through;
-    color: #999; 
+    color: #999;
 	background:#F5F5F5;
 	opacity:0.7;
 }
 .done .donecheck{
-    color: #FFF; 
+    color: #FFF;
 
 }
 
@@ -141,7 +141,7 @@ width: 280px;
 	NEW
 */
 
-body, html, .container { 
+body, html, .container {
   height: 100%;
 }
 /*
@@ -150,7 +150,7 @@ body, html, .container {
 
 .post_for{
 
-	margin-bottom:8px;	
+	margin-bottom:8px;
 	overflow:hidden;
  	color: #3b3b3b;
     font: 13px Verdana,sans-serif;
@@ -185,7 +185,7 @@ body, html, .container {
 }
 
 .addo{
-	
+
 	border-left:5px solid #d6e9c6;
 }
 
@@ -246,7 +246,7 @@ body, html, .container {
 }
 #posts h4:hover{
 	padding:3px;
-	
+
 	cursor: text;
 }
 .edit:hover{
@@ -267,8 +267,8 @@ body, html, .container {
 .bs-component{
 	overflow:hidden;
 	}
-	
-	
+
+
 .label {
 display: inline;
 float:none;
@@ -301,7 +301,7 @@ border-radius: .25em;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	 cursor: pointer; cursor: hand; 
+	 cursor: pointer; cursor: hand;
 }
 
 
@@ -320,7 +320,7 @@ ul.icons li{
 	margin:0px auto;
 	line-height: 60px;
 	text-align:center;
-	
+
 }
 
 ul.icons li a{
@@ -331,9 +331,9 @@ ul.icons li a{
  	box-shadow:         1px 1px 3px 0px #dedede;
 
 
-	background:#FFF;	
+	background:#FFF;
 	cursor: pointer; cursor: hand;
-	
+
 }
 
 ul.icons li a:hover{
@@ -416,7 +416,7 @@ ul.hash{
 .content::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	
+
 	background-color: #F5F5F5;
 }
 
@@ -442,7 +442,7 @@ ul.hash{
 .contentx::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	
+
 	background-color: #F5F5F5;
 }
 
@@ -478,7 +478,7 @@ ul.hash{
 	background:#202020;
 	border-left:1px solid #111;
 	border-right:1px solid #555;
-	
+
 	float:left;
 }
 
@@ -490,7 +490,7 @@ ul.hash{
 	border-left:1px solid #222;
 	border-right:1px solid #FFF;
 	float:left;
-	
+
 }
 
 #idbar4{
@@ -501,7 +501,7 @@ ul.hash{
 	border-left:1px solid #EEE;
 	border-right:1px solid #EEE;
 	float:left;
-	
+
 }
 
 /*
@@ -589,29 +589,29 @@ tooltip admin
 		bottom: -28px;
 		right: 22px;
 	}
-	
+
 	.chat{
 		overflow:hidden;
-		
+
 		margin-bottom:9px;
 	}
-	
+
 	.chat .nav{
 		margin-top:20px;
-	
+
 	}
-	
+
 	#chatbox{
 		position:relative;
 	}
-	
+
 	#chatbox .chatelements{
 		position:absolute;
 		margin-top:100px;
-			
+
 
 	}
-	
+
 	#chatbox .sendmsg{
 		position:absolute;
 		top:0;left:0;
@@ -619,7 +619,7 @@ tooltip admin
 		width:100%;
 		height:80px;
 	}
-	
+
 
 /*
 admin theme*/

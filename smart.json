@@ -4,6 +4,7 @@
     "roles": {},
     "moment": {},
     "accounts-admin-ui-bootstrap-3": {},
-    "iron-router": {}
+    "iron-router": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }

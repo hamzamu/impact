@@ -1,37 +1,38 @@
 <template name="nav">
-	
+
     <div class="navbar-wrapper">
-      <div class="container">
+        <div class="container">
 
-        <div class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">IMPACT NEWS</a>
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">IMPACT NEWS</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+
+
+                        <ul class="nav navbar-nav pull-right">
+
+
+
+                                {{#if currentUser}}
+                                    <li><a href='/admin'><i class="glyphicon glyphicon-cog"></i> admin</a></li>
+                                    <li><a href='/users'><i class="glyphicon glyphicon-user"></i> users</a></li>
+                                    {{/if}}
+
+
+                            <li><a href="#">{{> loginButtons }}</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
 
-              
-                   <ul class="nav navbar-nav pull-right">                  
-					  
-
-				 <li><a>{{#if currentUser}}
-					
-				  {{else}}
-				    
-				  {{/if}}
-				  
-				  {{> loginButtons }}</a></li>
-				  </ul>         
         </div>
-        </div>
-        </div>
-
-      </div>
     </div>
-    
+
 </template>

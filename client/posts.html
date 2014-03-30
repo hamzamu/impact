@@ -1,48 +1,28 @@
 <template name="posts">
 		<div id="posts" class="">
-		<div id="drops" class="">
-			
+
+
 
 		<div class="post bordertop"></div>
-		
-		
 
-			
-		
-		{{#each posts}}		
+            {{#each posts}}
 			<div class="post {{deleted}} po">
-				
 
 		{{#if currentUser}}
 			{{#if editing}}
-             
+
               <textarea class="list-name-input form-control edit_post" id="edit_post" rows="5" value="{{post}}">{{post}}</textarea>
-           	
-           	{{else}}	
-				<h4 class="edit">{{post}}</h4>
+
+           	{{else}}
+				<h4 class="">{{post}}<a href="{{pathFor 'postShow'}}"><i class="glyphicon  glyphicon-pushpin"></i></a></h4>
 			{{/if}}
-			
-			
+
+
 		{{else}}
-				<h4>{{post}}</h4>
+				<h4><a href="{{pathFor 'postShow'}}">{{post}}</a></h4>
 		{{/if}}
-		
-		<!--<p>		
-			<div class="progress progress progress-striped active">
-			  <div class="progress-bar progress-bar-success" style="width: 35%"></div>
-			  <div class="progress-bar progress-bar-warning" style="width: 20%"></div>
-			  <div class="progress-bar progress-bar-danger" style="width: 10%"></div>
-			</div>
-		</p>-->
 
-		
 		<p class="bs-component"><span class="pull-right">{{date}}</span></p>
-		
-		
-		
-		<!--<p>{{author}}</p>-->
-
-
 
 			<p class="bs-component tags">
 				{{#if confirmed}}<span class=" label label-default">Confirmed</span>{{/if}}
@@ -50,31 +30,36 @@
 				{{#if agancies}}<span class="label label-danger">Agancies</span>{{/if}}
 				{{#if social}}<span class="label label-success">Social media</span>{{/if}}
 				{{#if official}}<span class="label label-warning">Official</span>{{/if}}
-				
+
 			</p>
-			
+
 			<p>{{#if username.profile.name}}
-				{{username.profile.name}}		
+				{{username.profile.name}}
 			{{else}}
-				{{username.username}} 
-			{{/if}}	</p>	
-			
+				{{username.username}}
+			{{/if}}	</p>
+
 			{{#if currentUser}}
-			
-			
 
 
 			<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-pushpin"></span></a>
 			<a href="" class="delete-link cdl2" ><span class="glyphicon  glyphicon-map-marker"></span></a>
-			<a href="" class="delete-link cdl"><span class="glyphicon  glyphicon-remove "></span></a>			
+			<a href="" class="delete-link cdl"><span class="glyphicon  glyphicon-remove "></span></a>
 			<a href="" class="edit cdl" ><span class="glyphicon  glyphicon-edit"></span></a>
-				
+
 			{{/if}}
-					
+
 			</div>
 		{{/each}}
 		<div class="post borderbottom"></div>
 		</div>
-		</div>
+
 		<br />
+</template>
+
+
+<template name='postShow'>
+    
+    {{body}}
+
 </template>

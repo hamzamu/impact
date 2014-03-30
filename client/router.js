@@ -7,11 +7,11 @@
 	  //~ '/adminold': 'adminx',
 	  //~ '/users': 'users',
 	  //~ '/main': 'page',
-	  //~ '/': 'page',	
+	  //~ '/': 'page',
 	  //~ '*': '404'
 	//~ });
-	
-	
+
+
 	//~ Meteor.Router.filters({
 		//~ 'checkLoggedIn': function(page) {
 			//~ if (Meteor.loggingIn()) {
@@ -20,12 +20,12 @@
 				//~ return 'page';
 			//~ } else {
 				//~ return 'login';
-				//~ 
+				//~
 			//~ }
 		//~ }
 	//~ });
-	
+
 	//~ Meteor.Router.filter('checkLoggedIn', {
 		//~ except: ['admin','register','page']
 	//~ });
-	
+
