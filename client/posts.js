@@ -13,7 +13,7 @@ Template.posts.posts = function () {
 
 
 //get user name or profile name
-Template.post.helpers({
+Template.postSingle.helpers({
     username: function () {
         var userid = this.author;
         var username = Meteor.users.findOne({
@@ -27,7 +27,28 @@ Template.post.helpers({
     },
     postin: function () {
         var posti = this.post;
-        //var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
+        var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
+        return replacex;
+
+    },
+});
+
+//get user name or profile name
+Template.postShow.helpers({
+    username: function () {
+        var userid = this.author;
+        var username = Meteor.users.findOne({
+            _id: userid
+        });
+        return (username);
+    },
+    date: function () {
+        date = moment(this.created_at).fromNow();
+        return date;
+    },
+    postin: function () {
+        var posti = this.post;
+		//var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
         return posti;
 
     },
@@ -48,7 +69,7 @@ Template.main.new_cat = function () {
 
 Session.setDefault('editing_listname', null);
 
-Template.post.editing = function () {
+Template.postSingle.editing = function () {
     return Session.equals('editing_listname', this._id);
 };
 
@@ -120,7 +141,7 @@ Template.main.events({
 
 });
 //home page post events
-Template.post.events({
+Template.postSingle.events({
 
 
 

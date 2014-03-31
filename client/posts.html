@@ -6,7 +6,7 @@
 		<div class="post bordertop"></div>
 
             {{#each posts}}
-            {{>post}}
+            {{>postSingle}}
 		{{/each}}
 		<div class="post borderbottom"></div>
 		</div>
@@ -15,7 +15,8 @@
 </template>
 
 
-<template name='post'>
+<template name='postSingle'>
+
 <div class="post {{deleted}} po">
 
 		{{#if currentUser}}
@@ -70,12 +71,13 @@
 			</div>
 </template>
 
-<template name="postshow">
+<template name="postShow">
     {{>nav}}
     <br />
     <br />
     <br />
     {{post}}
+    {{postin}}
 
     {{date}}
     

@@ -38,9 +38,9 @@ Meteor.subscribe("directory");
 //~ });
 
 
-Template.page.rendered = function () {
+//Template.page.rendered = function () {
     //$('.navbar').localScroll({hash:true, offset: {top: 0},duration: 800, easing:'easeInOutExpo'});
-}
+//}
 
 
 //~ Template.canvmenu.rendered = function() {

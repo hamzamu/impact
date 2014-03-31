@@ -38,40 +38,26 @@
 
 <template name="MyLayout">
 
-
-
-    {{> yield "page"}}
-
-
-
-</template>
-
-
-<template name="page">
-
-
-
-
-    <div class="margintop"></div>
+	
 
 
 
     
 
-        {{> nav}} 
-        
-        {{> main}}
+    {{>nav}}
+    {{> yield }}
 
-    
 
 
 </template>
+
 
 
 
 
 <template name="main">
-
+    <div class="margintop"></div>
+	<div class="container">
     <div class="row">
 
         {{> searchnav}}
@@ -157,6 +143,7 @@
 
     </div>
     <!--row-->
+        </div>
 
 
 
