@@ -110,6 +110,15 @@
 
 </template>
 
+<template name='searchTest'>
+    
+    You are searching for <h1>{{thePrefix}}</h1>
+    {{#each posts}}
+    <p>{{post}}</p>   
+    {{/each}}
+
+</template>
+
 
 <template name="searchbox">
     <div class="tip" id="tooltip">

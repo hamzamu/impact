@@ -16,7 +16,7 @@ html,
     box-shadow       : 0px 0px 5px #2299DD;
 }
 
-#iron-router-progress.spinner {
+#iron-router-progress.spinner:before {
     border-color : #2299DD;
 }
 

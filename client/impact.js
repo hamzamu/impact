@@ -108,13 +108,13 @@ Template.main.events({
     'keyup #search': function (e, t) {
         if (e.which === 13) {
             $("#tooltip").fadeToggle("fast", "linear");
-            var val = $('#search').val('');
+            Session.set('prefix', $('#search').val());
+            //var val = $('#search1').val('');
             Meteor.setTimeout(function () {
                 $('body').removeClass('stop-scrolling');
             }, 100)
-            var param = val ;
-            Session.set('SearchQ',val);
-            Router.go('/s');
+            //var param = val ;
+            Router.go('/search');
         }
         if (e.which === 27) {
             $("#tooltip").fadeToggle("fast", "linear");
@@ -127,7 +127,15 @@ Template.main.events({
 
 });
 
+Template.searchTest.posts = function () {
+  return posts.find({post: { $regex: Session.get('prefix')+".*", $options: 'i' }});
+};
 
+Template.searchTest.helpers({
+  thePrefix: function () {
+    return Session.get("prefix");
+  }
+});
 
 
 //~ Template.posts.rendered = function(){
