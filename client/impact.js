@@ -12,10 +12,7 @@ Template.users.helpers({
 })
 
 
-Session.setDefault('createError', false);
-Template.main.error = function () {
-    return Session.get("createError");
-};
+
 
 
 Meteor.subscribe('posts');
@@ -39,7 +36,7 @@ Meteor.subscribe("directory");
 
 
 //Template.page.rendered = function () {
-    //$('.navbar').localScroll({hash:true, offset: {top: 0},duration: 800, easing:'easeInOutExpo'});
+//$('.navbar').localScroll({hash:true, offset: {top: 0},duration: 800, easing:'easeInOutExpo'});
 //}
 
 
@@ -78,7 +75,7 @@ Meteor.subscribe("directory");
 //~ $(this.firstNode).fadeOut().fadeIn();
 //~
 //~ };
-//Template.posts.created = function () {
+//Template.posts.created = functcion () {
 //Template.posts.rendered = function () {
 //if (Session.equals('selected', this.data._id))
 //$(this.firstNode).fadeOut().fadeIn();
@@ -93,6 +90,44 @@ Template.main.open = function () {
         return 'open';
     }
 };
+
+Template.main.events({
+    'click #openi': function (e, t) {
+        $('body').addClass('stop-scrolling');
+        $("#tooltip").fadeToggle("fast", "linear");
+        $('#search').focus();
+    },
+    'click #closei': function (e, t) {
+
+        $("#tooltip").fadeToggle("fast", "linear");
+        Meteor.setTimeout(function () {
+            $('body').removeClass('stop-scrolling');
+        }, 100)
+
+    },
+    'keyup #search': function (e, t) {
+        if (e.which === 13) {
+            $("#tooltip").fadeToggle("fast", "linear");
+            var val = $('#search').val('');
+            Meteor.setTimeout(function () {
+                $('body').removeClass('stop-scrolling');
+            }, 100)
+            var param = val ;
+            Session.set('SearchQ',val);
+            Router.go('/s');
+        }
+        if (e.which === 27) {
+            $("#tooltip").fadeToggle("fast", "linear");
+            $('#search').val('');
+            Meteor.setTimeout(function () {
+                $('body').removeClass('stop-scrolling');
+            }, 100)
+        }
+    }
+
+});
+
+
 
 
 //~ Template.posts.rendered = function(){

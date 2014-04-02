@@ -1,15 +1,14 @@
 // get posts to the fron page
 Template.posts.posts = function () {
-    return posts.find({}, {
-        sort: {
-            created_at: -1
-        }
-    });
+    return posts.find({}, {sort: { created_at: -1}});
 
 };
 
 
-
+Session.setDefault('createError', null);
+Template.header_home.error = function () {
+    return Session.get("createError");
+};
 
 
 //get user name or profile name
@@ -23,6 +22,27 @@ Template.postSingle.helpers({
     },
     date: function () {
         date = moment(this.created_at).fromNow();
+        //date = moment(this.created_at).format('LL');
+        return date;
+    },
+    postin: function () {
+        var posti = this.post;
+        var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
+        return replacex;
+
+    },
+});//get user name or profile name
+Template.lists.helpers({
+    username: function () {
+        var userid = this.author;
+        var username = Meteor.users.findOne({
+            _id: userid
+        });
+        return (username);
+    },
+    date: function () {
+        date = moment(this.created_at).fromNow();
+        //date = moment(this.created_at).format('LL');
         return date;
     },
     postin: function () {
@@ -59,7 +79,7 @@ Template.postShow.helpers({
 
 // publish from the front page
 Session.set('adding_category', false);
-Template.main.new_cat = function () {
+Template.header_home.new_cat = function () {
     return Session.equals('adding_category', true);
 };
 
@@ -73,7 +93,7 @@ Template.postSingle.editing = function () {
     return Session.equals('editing_listname', this._id);
 };
 
-Template.main.events({
+Template.header_home.events({
     'click #btnNewCat': function (e, t) {
         Session.set('adding_category', true);
         Meteor.flush();
