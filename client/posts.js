@@ -1,14 +1,58 @@
 // get posts to the fron page
 Template.posts.posts = function () {
-    return posts.find({}, {sort: { created_at: -1}});
+    return posts.find({}, {
+        sort: {
+            created_at: -1
+        }
+    });
 
 };
 
 
-Session.setDefault('createError', null);
-Template.header_home.error = function () {
-    return Session.get("createError");
+
+
+Template.postSingle.rendered = function () {
+    var $item = $(this.find('.post'));
+    Meteor.defer(function () {
+        $item.addClass('magictime  swashIn ');
+    });
+}
+
+
+
+
+
+
+Template.hashtag.hasthag = function () {
+    return Session.get('hashtag');
 };
+
+Template.searchTest.searchQ = function () {
+    return Session.get('prefix');
+};
+
+
+
+
+
+// publish from the front page
+Session.set('adding_category', false);
+Template.header_home.new_cat = function () {
+    return Session.equals('adding_category', true);
+};
+
+
+
+
+
+// editing a post
+
+Session.setDefault('editing_listname', null);
+
+Template.postSingle.editing = function () {
+    return Session.equals('editing_listname', this._id);
+};
+
 
 
 //get user name or profile name
@@ -27,31 +71,40 @@ Template.postSingle.helpers({
     },
     postin: function () {
         var posti = this.post;
-        var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
+        var replacex = posti.replace(/#(\S*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
+        //var replacex = posti.replace(/(#[a-z0-9][a-z0-9\-_]*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
         return replacex;
 
     },
-});//get user name or profile name
-Template.lists.helpers({
-    username: function () {
-        var userid = this.author;
-        var username = Meteor.users.findOne({
-            _id: userid
+
+    slug: function () {
+        var postxt = this.post;
+        var slug = postxt.replace(/\W+/g, '-').toLowerCase();
+        return slug;
+    },
+
+    numrates: function () {
+
+        return rates.find({
+            post: this._id
+
+        }).count();
+
+    },
+
+    iflike: function () {
+        var like = rates.findOne({
+            post: this._id,
+            user: Meteor.userId()
         });
-        return (username);
-    },
-    date: function () {
-        date = moment(this.created_at).fromNow();
-        //date = moment(this.created_at).format('LL');
-        return date;
-    },
-    postin: function () {
-        var posti = this.post;
-        var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
-        return replacex;
+        if (like)
+            return 'likeit';
+    }
 
-    },
+
 });
+
+
 
 //get user name or profile name
 Template.postShow.helpers({
@@ -67,31 +120,15 @@ Template.postShow.helpers({
         return date;
     },
     postin: function () {
-        var posti = this.post;
-		//var replacex = posti.replace(/#(\S*)/g, "<a href='/s/$1'>#$1</a>");
-        return posti;
+        var postx = this.post;
+        //var replacex = postx.replace(postx, '_');
+        return postx;
 
     },
 });
 
 
 
-
-// publish from the front page
-Session.set('adding_category', false);
-Template.header_home.new_cat = function () {
-    return Session.equals('adding_category', true);
-};
-
-
-
-// editing a post
-
-Session.setDefault('editing_listname', null);
-
-Template.postSingle.editing = function () {
-    return Session.equals('editing_listname', this._id);
-};
 
 Template.header_home.events({
     'click #btnNewCat': function (e, t) {
@@ -125,7 +162,9 @@ Template.header_home.events({
                         //author : Meteor.user()._id
                         author: Meteor.userId(),
                     });
+                    //post._id = posts.insert(post);
                     //$('#add-post').fadeOut();
+
                     $("#add-post-front").slideUp("slow");
                     Meteor.setTimeout(function () {
                         Session.set('adding_category', false);
@@ -138,10 +177,10 @@ Template.header_home.events({
                 } else { //if the user is not logged in
                     //throw new Meteor.Error(422, 'Please provide a Last Name');
                     Session.set('adding_category', false);
-                    Session.set("createError", "You have to login to add posts");
-                    Meteor.setTimeout(function () {
-                        $('#error').fadeOut();
-                    }, 3000) // working
+                    //Session.set("createError", "You have to login to add posts");
+                    Meteor.call('createErrorMsg', 'You have to login to add posts');
+
+                    // working
                     //Meteor.setTimeout(function() {$("#error").css({display:"none"});}, 1000) // working
 
 
@@ -160,31 +199,70 @@ Template.header_home.events({
     },
 
 });
+
+
+Meteor.setInterval(function () {
+    $('#error').fadeOut();
+    Session.set('createError', null);
+}, 7000);
+
+
+
 //home page post events
 Template.postSingle.events({
-
-
-
-
 
     'click .delete-link': function () {
         //if (confirm('Are you sure you want to remove this.')) {
         //(confirm('are you sure you want to leave?'))  {
         //$(this._id).fadeOut().fadeIn();
+
+
         posts.remove(this._id);
+
+
         //}
         //}
+    },
+    
+    'click .commentshow': function (e, t) {
+        Session.set('commentForm', this._id);
+        Meteor.flush();
+        $(".addcomment").focus();
+
     },
 
 
     //edit open session to edit 
     'click  .edit': function (e, t) { // start editing list name
         Session.set('editing_listname', this._id);
-
         Meteor.flush();
         $('.edit_post').focus();
 
 
+    },
+
+    'click .rateit': function (e, t) {
+        var like = rates.findOne({
+            post: this._id,
+            user: Meteor.userId()
+        });
+        if (Meteor.userId() && !like)
+            rates.insert({
+                user: Meteor.userId(),
+                post: this._id
+            });
+        
+        if (!Meteor.userId()){
+            Session.set("createError", "login to rate");
+        }
+
+
+    },
+
+    'click .taglink': function (e, t) {
+        var hashtag = $('.taglink').attr("alt");
+        Session.set('hashtag', hashtag);
+        
     },
 
     // edit in place 
@@ -196,6 +274,7 @@ Template.postSingle.events({
                     post: catVal
                 }
             });
+
             Session.set('editing_listname', null);
         }
 

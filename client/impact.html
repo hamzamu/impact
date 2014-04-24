@@ -19,19 +19,15 @@
 <body>
 
 
-
-    {{#Layout template="MyLayout"}} {{#contentFor region="header"}} {{/contentFor}} {{#contentFor region="footer"}} {{/contentFor}} {{/Layout}}
+    {{>nav}}
+    {{#Layout template="MyLayout"}} {{/Layout}}
 
 </body>
 
 
 <template name="MyLayout">
 
-
-
     {{> yield }}
-
-
 
 </template>
 
@@ -40,187 +36,19 @@
 
 
 <template name="main">
-    {{>nav}}
+
     <div class="margintop"></div>
     <div class="container">
         {{> header_home}}
 
-        {{> content}}
-        <!--it holds content part / home page-->
-       
-    </div>
-    <!--container-->
-
-
-    {{> searchbox}}
-
-
-
-</template>
-
-<template name="searchpage">
-    {{>nav}}
-
-    <div class="container">
-
- 
-           <div class="outerContainer">
-            <div class="innerContainer">
-                
-                
-                    <div class="form-group" id="form-search">
-
-                        <input type="text" class="form-control search-query" id="search" placeholder="Search">
-                    </div>
-                <br />
-                <p>Seach topics , news , locations , city , events or dates</p>
-            </div>
-        </div>
-        
-   
-        
-        {{> searchRes }}
-        
-        
-        
-    </div>
-    <!--container-->
-
-
-
-
-
-
-</template>
-
-
-<template name='searchRes'>
-    
-    {{#each searchResults}}
-    {{post}}
-    {{/each}}
-
-</template>
-
-<template name='lists'>
-    datadd
-    {{#each posts}}
-    <p>{{#markdown}}{{postin}}{{/markdown}}</p>   
-    {{/each}}
-
-</template>
-
-<template name='searchTest'>
-    
-    You are searching for <h1>{{thePrefix}}</h1>
-    {{#each posts}}
-    <p>{{post}}</p>   
-    {{/each}}
-
-</template>
-
-
-<template name="searchbox">
-    <div class="tip" id="tooltip">
-        <a href="#" id="closei" class="close">x</a>
-
-        <div class="outerContainer">
-            <div class="innerContainer">
-                
-                
-                    <div class="form-group" id="form-search">
-
-                        <input type="text" class="form-control" id="search" placeholder="Search">
-                    </div>
-                <br />
-                <p>Seach topics , news , locations , city , events or dates</p>
-            </div>
-        </div>
-
-    </div>
-</template>
-
-
-<template name='header_home'>
-
-        <div class="row">
-
-            {{> searchnav}}
-
-            <!--<div class="{{open}}" id="clickme">Click me!</div>-->
-
-
-            <div class="col-md-6 ">
-
-
-                {{> errorz }}
-
-                <div class=" panel panel-success  shadow">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Add a Post !</h3>
-                    </div>
-
-                    <div class="addo borderbottom panel-body">
-                        <div id="add-post-form" class="post_for">
-                            {{#if new_cat}}
-
-                            <p>
-                                <textarea class="form-control" id="add-post-front" rows="3"></textarea>
-                            </p>
-                            <p>
-                                <a class="btn btn-default" id="newpostclose">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </p>
-                            {{else}}
-                            <p>
-                                <a class=" btn btn-warning" id="btnNewCat">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </a>
-                            </p>
-
-
-                            {{/if}}
-
-                        </div>
-                        <!--form-->
-                    </div>
-                </div>
-
-            </div>
-            <!---col-->
-
-
-            {{> notifcationnav}}
-            <!---col-->
-
-
-        </div>
-        <!--row-->
-
-</template>
-
-<template name='errorz'>
-                {{#if error}}
-                <div class="pad margin no-print" id="error">
-                    <div class="alert alert-info" style="margin-bottom: 0!important;">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <i class="fa fa-info"></i>
-                        <b>Note:</b>{{error}}
-                    </div>
-                </div>
-
-                {{/if}}
-
-</template>
-
-<template name='content'>
         <div class="row">
             {{> controlnav }}
 
 
             <div class="col-md-6 ">
+                
+                
+                
                 <!--col-md-offset-2-->
 
                 {{> posts}}
@@ -235,14 +63,85 @@
 
 
         </div>
+        <!--row-->
 
+    </div>
+    <!--container-->
+
+
+    {{> searchbox}}
 </template>
 
+<template name="signin">
 
-<template name="notFound">
-    <h1>Not Found</h1>
+    <div class="margintop"></div>
+    <div class="container">
+
+
+        <div class="row">
+
+
+
+            <div class="col-md-6 ">
+                
+                
+                
+                <!--col-md-offset-2-->
+
+				{{> entrySignIn}}
+
+            </div>
+            <!--col for posts-->
+
+
+
+
+            <div class="margintop"></div>
+
+
+        </div>
+        <!--row-->
+
+    </div>
+    <!--container-->
+
+
+    {{> searchbox}}
 </template>
 
-<template name="loading">
-    <h1>Loading...</h1>
+<template name="signup">
+
+    <div class="margintop"></div>
+    <div class="container">
+
+
+        <div class="row">
+
+
+
+            <div class="col-md-6 ">
+                
+                
+                
+                <!--col-md-offset-2-->
+
+				{{> entrySignUp}}
+
+            </div>
+            <!--col for posts-->
+
+
+
+
+
+
+        <div class="margintop"></div>
+        </div>
+        <!--row-->
+
+    </div>
+    <!--container-->
+
+
+    {{> searchbox}}
 </template>

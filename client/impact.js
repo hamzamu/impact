@@ -1,8 +1,11 @@
-posts = new Meteor.Collection("posts");
-
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 });
+
+
+
+
+
 
 Template.users.helpers({
     // check if user is an admin
@@ -12,27 +15,53 @@ Template.users.helpers({
 })
 
 
-
-
-
 Meteor.subscribe('posts');
 Meteor.subscribe("directory");
+Meteor.subscribe("rates");
+Meteor.subscribe("comments");
 
-//~ Meteor.autosubscribe(function(){
-//~ posts.find().observe({
-//~ added: function(item){
-//~ setTimeout("$('.post').fadeIn('slow')",10)
-//~ }
-//~ });
-//~ });
 
-//~ Meteor.autosubscribe(function() {
-//~ posts.find().observe({
-//~ added: function(item){
-//~ alert(item.status);
-//~ }
-//~ });
-//~ });
+
+Session.setDefault('createError', null);
+Template.errorz.error = function () {
+    return Session.get("createError");
+};
+
+
+//var clearError = function(){
+//                    Meteor.setTimeout(function () {
+//                        $('#error').fadeOut();
+//                        Session.set('createError', null);
+//                    }, 1000)
+//};
+
+Meteor.methods({
+    createErrorMsg: function (msg) {
+        Session.set('createError', msg);
+        $('#error').css('display', 'block');
+
+
+    }
+
+});
+
+
+
+
+
+//Meteor.autosubscribe(function () {
+//    posts.find().observe({
+//        added: function (item) {
+//          var $item = $(item.find('.post'));
+//           $item.addClass('magictime swashIn');
+//        },
+//        removed: function (item){
+//        	$('.post ' ).addClass('magictime swashIn');
+//        }
+//    });
+//});
+
+
 
 
 //Template.page.rendered = function () {
@@ -40,41 +69,10 @@ Meteor.subscribe("directory");
 //}
 
 
-//~ Template.canvmenu.rendered = function() {
-//~ $("#my-menu").mmenu({
-//~ classes: "mm-navy",
-//~ //classes: "mm-slide mm-light ",
-//~ //classes: "mm-zoom-page"
-//~ //classes: "mm-slide-right",
-//~ //classes: "mm-fullscreen"
-//~ //modal : true
-//~ //searchfield: true,
-//~
-//~ });
-//~ $("#tooltip-1").mmenu({
-//~ // mm-bordeau mm-light mm-dark mm-navy mm-army
-//~ classes:" mm-light",
-//~ modal : true,
-//~ position:'bottom',
-//~ });
-//~
-//~ $("#close").click(function(){
-//~ $("#tooltip-1").trigger("close");
-//~ });
-
-//~ };
-
-//~ Template.posts.authorx = function () {
-//~ return Meteor.users.findOne({fields: {_id: posts.author}});
-//~
-//~ };
 
 
-//~ Template.posts.rendered = function () {
-//~ //if (Session.equals('selected', this.data._id))
-//~ $(this.firstNode).fadeOut().fadeIn();
-//~
-//~ };
+
+
 //Template.posts.created = functcion () {
 //Template.posts.rendered = function () {
 //if (Session.equals('selected', this.data._id))
@@ -83,59 +81,6 @@ Meteor.subscribe("directory");
 //};
 
 
-// junk test
-
-Template.main.open = function () {
-    if (Session.get('open')) {
-        return 'open';
-    }
-};
-
-Template.main.events({
-    'click #openi': function (e, t) {
-        $('body').addClass('stop-scrolling');
-        $("#tooltip").fadeToggle("fast", "linear");
-        $('#search').focus();
-    },
-    'click #closei': function (e, t) {
-
-        $("#tooltip").fadeToggle("fast", "linear");
-        Meteor.setTimeout(function () {
-            $('body').removeClass('stop-scrolling');
-        }, 100)
-
-    },
-    'keyup #search': function (e, t) {
-        if (e.which === 13) {
-            $("#tooltip").fadeToggle("fast", "linear");
-            Session.set('prefix', $('#search').val());
-            //var val = $('#search1').val('');
-            Meteor.setTimeout(function () {
-                $('body').removeClass('stop-scrolling');
-            }, 100)
-            //var param = val ;
-            Router.go('/search');
-        }
-        if (e.which === 27) {
-            $("#tooltip").fadeToggle("fast", "linear");
-            $('#search').val('');
-            Meteor.setTimeout(function () {
-                $('body').removeClass('stop-scrolling');
-            }, 100)
-        }
-    }
-
-});
-
-Template.searchTest.posts = function () {
-  return posts.find({post: { $regex: Session.get('prefix')+".*", $options: 'i' }});
-};
-
-Template.searchTest.helpers({
-  thePrefix: function () {
-    return Session.get("prefix");
-  }
-});
 
 
 //~ Template.posts.rendered = function(){

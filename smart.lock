@@ -5,10 +5,10 @@
       "font-awesome": {},
       "roles": {},
       "moment": {},
-      "accounts-admin-ui-bootstrap-3": {},
       "iron-router": {},
-      "accounts-ui-bootstrap-3": {},
-      "iron-router-progress": {}
+      "iron-router-progress": {},
+      "accounts-entry": {},
+      "accounts-admin-ui-bootstrap-3": {}
     },
     "packages": {
       "font-awesome": {
@@ -26,35 +26,45 @@
         "tag": "v2.5.1",
         "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
       },
-      "accounts-admin-ui-bootstrap-3": {
-        "git": "https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3.git",
-        "tag": "v0.2.4",
-        "commit": "64e74a088f01d03362e3758d7ddbffe229b1437c"
-      },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.7.0",
-        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
-      },
-      "accounts-ui-bootstrap-3": {
-        "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
-        "tag": "v0.3.0-1",
-        "commit": "93ffa5d0e325dc7026de89f6d90c178fa04bdd3a"
+        "tag": "v0.7.1",
+        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
       },
       "iron-router-progress": {
         "git": "https://github.com/Multiply/iron-router-progress.git",
         "tag": "v0.3.1",
         "commit": "3f7900feb4bb70a1289b39a1fdcd1f438c0335b3"
       },
+      "accounts-entry": {
+        "git": "https://github.com/Differential/accounts-entry.git",
+        "tag": "v0.7.2",
+        "commit": "cda8617139b5edd79a52023986bfecb48e4b9dc4"
+      },
+      "accounts-admin-ui-bootstrap-3": {
+        "git": "https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3.git",
+        "tag": "v0.2.5",
+        "commit": "381d4ca347f16d2ca2e1e6ca5f51c3f2e9c6c5cd"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.4",
+        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
+      },
+      "just-i18n": {
+        "git": "https://github.com/subhog/meteor-just-i18n.git",
+        "tag": "v0.2.4",
+        "commit": "91decfcf5b3b5e67f202a67658350b862330bf3d"
+      },
+      "accounts-t9n": {
+        "git": "https://github.com/softwarerero/meteor-accounts-t9n.git",
+        "tag": "v0.0.3",
+        "commit": "d1710f979d6955459d9ce0374df81d22c3c6a6ab"
+      },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
         "tag": "v3.1.1-1",
         "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
-      },
-      "blaze-layout": {
-        "git": "https://github.com/EventedMind/blaze-layout.git",
-        "tag": "v0.2.2",
-        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
       }
     }
   }

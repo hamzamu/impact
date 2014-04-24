@@ -13,8 +13,13 @@ accounts-password
 email
 roles
 moment
-accounts-admin-ui-bootstrap-3
 iron-router
-accounts-ui-bootstrap-3
 showdown
 iron-router-progress
+accounts-facebook
+accounts-twitter
+accounts-entry
+coffeescript
+accounts-admin-ui-bootstrap-3
+accounts-ui
+bootstrap-3

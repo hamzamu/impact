@@ -3,9 +3,9 @@
     "font-awesome": {},
     "roles": {},
     "moment": {},
-    "accounts-admin-ui-bootstrap-3": {},
     "iron-router": {},
-    "accounts-ui-bootstrap-3": {},
-    "iron-router-progress": {}
+    "iron-router-progress": {},
+    "accounts-entry": {},
+    "accounts-admin-ui-bootstrap-3": {}
   }
 }
