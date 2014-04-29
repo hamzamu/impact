@@ -17,17 +17,36 @@
 </head>
 
 <body>
+    {{> navside}}
 
 
     {{>nav}}
     {{#Layout template="MyLayout"}} {{/Layout}}
-
+    
+    
+ 
+      <div style="position:fixed;right:5px;bottom:5px;color:#FFF;z-index:1000;"><a href="#" id="top" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-chevron-up"></span></a></div>
 </body>
 
 
 <template name="MyLayout">
 
     {{> yield }}
+    
+    
+
+</template>
+
+<template name="newsbar">
+
+<ul id="ticker01">
+	<li><span>10/10/2007</span><a href="#">The first thing ...</a></li>
+	<li><span>10/10/2007</span><a href="#">End up doing is ...</a></li>
+	<li><span>10/10/2007</span><a href="#">The code that you ...</a></li>
+	<!-- eccetera -->
+</ul>
+    
+    
 
 </template>
 
@@ -144,4 +163,12 @@
 
 
     {{> searchbox}}
+</template>
+
+
+
+
+<template name="more">
+                           <div class="post" style="text-align:center;">
+            <a class="btn btn-sm btn-danger" href="#" id="more">more</a></div>
 </template>

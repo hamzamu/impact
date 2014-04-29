@@ -6,40 +6,74 @@
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+
                         <a class="navbar-brand" href="/">IMPACT NEWS</a>
                     </div>
-                    <div class="navbar-collapse collapse">
-
-
-                        <ul class="nav navbar-nav pull-right">
+                    <!--                    <div class="navbar-collapse collapse">-->
 
 
 
-                                {{#if currentUser}}
-                                    <li><a href='/admin'><i class="glyphicon glyphicon-cog"></i> admin</a></li>
-                                    <li><a href='/users'><i class="glyphicon glyphicon-user"></i> users</a></li>
-                                    {{/if}}
+                    <ul class="nav navbar-nav pull-right">
 
-{{> accountButtons}}
-                            <li><a href="#"><!-- {{> loginButtons }} --></a></li>
-                            <li>                    <a href="" class="">
+
+
+                        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span></a></li>
+
+
+                        <li>
+                            <a href="#">
+                                <!-- {{> loginButtons }} -->
+                            </a>
+                        </li>
+                        <!--<li>                    <a href="" class="">
 tr
                     </a></li>                            <li>                    <a href="" class="">
 en
                     </a></li>  <li>                    <a href="" class="">
 ar - ع
-                    </a></li>
-                        </ul>
-                    </div>
+                    </a></li>-->
+                        
+
+
+                        <li class="navbar-header pull-right">
+                            <a id="nav-expander" class="nav-expander fixed" href="#">
+                                &nbsp;
+                                <i class="fa fa-bars fa-lg white"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
                 </div>
+
+
             </div>
 
         </div>
     </div>
 
+</template>
+
+<template name='navside'>
+    <nav id="navoff">
+        <ul class="list-unstyled main-menu">
+
+            <!--Include your navigation here-->
+            <li class="text-right">
+                <a href="#" id="nav-close" class="pull-right"><i class="glyphicon glyphicon-remove"></i></a>
+            </li>
+
+            
+                         {{#if currentUser}}
+                            {{#if isAdminUser}}
+                                    <li><a href='/admin'>Dashboard</a></li>
+                                    <li><a href='/users'>Users</a></li>
+                                    {{/if}}
+                                    {{/if}}
+            
+            {{> accountButtons}}
+
+        </ul>
+    </nav>
 </template>

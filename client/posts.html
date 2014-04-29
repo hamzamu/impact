@@ -2,15 +2,21 @@
     <div id="posts" class="">
 
         <div class="post bordertop"></div>
-
+        
+        <!--<a id="admin">admin</a>{{hasmore}}-->
+        
+        
         {{#each posts}} {{> postSingle}} 
-        {{#if commentForm}}
-        {{> comments}} 
-        {{/if}}
+        {{> commentsbox}}
         {{/each}}
 
+        {{> more}}
+        
+        
         <div class="post borderbottom"></div>
+        <div class="margintop"></div>
     </div>
 
     <br />
 </template>
+

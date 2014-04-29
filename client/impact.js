@@ -7,7 +7,7 @@ Accounts.ui.config({
 
 
 
-Template.users.helpers({
+Template.navside.helpers({
     // check if user is an admin
     isAdminUser: function () {
         return Roles.userIsInRole(Meteor.user(), ['admin']);
@@ -15,85 +15,101 @@ Template.users.helpers({
 })
 
 
-Meteor.subscribe('posts');
+
+
+
+//Meteor.subscribe('posts');
 Meteor.subscribe("directory");
 Meteor.subscribe("rates");
 Meteor.subscribe("comments");
+Meteor.subscribe("tags");
+//Meteor.subscribe("postscount");
 
 
+Session.setDefault('postsn', 20);
+
+Deps.autorun(function () {
+    Meteor.subscribe('posts', Session.get('postsn'));
+})
 
 Session.setDefault('createError', null);
 Template.errorz.error = function () {
     return Session.get("createError");
 };
 
+Template.posts.hasmore = function () {
+    //var postscounts = posts.find().count();
+    //return getPostsCount();
+    return posts.find().count();
+}
 
-//var clearError = function(){
-//                    Meteor.setTimeout(function () {
-//                        $('#error').fadeOut();
-//                        Session.set('createError', null);
-//                    }, 1000)
-//};
+
+Template.sidebarnav.hashlist = function () {
+    return tags.find({}, {
+        limit: 10,
+        sort: {
+            count: -1,
+            dtime: -1
+        }
+    });
+}
+
+Template.sidebarnav.helpers({
+    tagout: function () {
+        var tag = this.tag;
+        var replacex = tag.replace(/#(\S*)/ig, "$1");
+        return replacex;
+    }
+
+})
+
+Template.sidebarnav.events({
+    'click .taglink': function (e, t) {
+        var hashtag = $(e.target).attr("alt");
+        Session.set('hashtag', hashtag);
+        Meteor.call('resetPostsNo');
+
+    },
+})
+
+UI.body.events({
+    'click #nav-expander': function (e, t) {
+        e.preventDefault();
+        $('body').toggleClass('nav-expanded');
+        $('body').addClass('stop-scrolling');
+    },
+    'click #nav-close': function (e, t) {
+        $('body').removeClass('nav-expanded');
+        $('body').removeClass('stop-scrolling');
+    },
+    'mouseup .main-menu': function (e, t) {
+        $('body').removeClass('nav-expanded');
+        $('body').removeClass('stop-scrolling');
+    },
+    'click #top': function (e, t) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, 1000);
+    },
+
+})
+
+
+
+
 
 Meteor.methods({
     createErrorMsg: function (msg) {
         Session.set('createError', msg);
         $('#error').css('display', 'block');
-
-
+    },
+    resetPostsNo: function () {
+        Session.set('postsn', 20);
     }
 
 });
 
-
-
-
-
-//Meteor.autosubscribe(function () {
-//    posts.find().observe({
-//        added: function (item) {
-//          var $item = $(item.find('.post'));
-//           $item.addClass('magictime swashIn');
-//        },
-//        removed: function (item){
-//        	$('.post ' ).addClass('magictime swashIn');
-//        }
-//    });
-//});
-
-
-
-
-//Template.page.rendered = function () {
-//$('.navbar').localScroll({hash:true, offset: {top: 0},duration: 800, easing:'easeInOutExpo'});
-//}
-
-
-
-
-
-
-//Template.posts.created = functcion () {
-//Template.posts.rendered = function () {
-//if (Session.equals('selected', this.data._id))
-//$(this.firstNode).fadeOut().fadeIn();
-
-//};
-
-
-
-
-//~ Template.posts.rendered = function(){
-//~ var $this = $(this.firstNode);
-//~ $this.addClass("invisible");
-//~ Meteor.defer(function() {
-//~ //instance.currentPosition = newPosition;
-//~ // bring element back to its new original position
-//~ $this.css("top",  "0px").removeClass("invisible");
-//~ $.fadeOut().fadeIn();
-//~ })
-//~
-//~ }
 
 
 function focusText(i, val) {

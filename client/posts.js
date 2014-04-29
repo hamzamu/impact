@@ -11,10 +11,14 @@ Template.posts.posts = function () {
 
 
 
+
+
 Template.postSingle.rendered = function () {
     var $item = $(this.find('.post'));
     Meteor.defer(function () {
-        $item.addClass('magictime  swashIn ');
+        //$item.addClass('magictime  swashIn ');
+        $item.addClass('animated fadeInDown');
+        //$item.fadeIn("slow");
     });
 }
 
@@ -99,7 +103,7 @@ Template.postSingle.helpers({
         });
         if (like)
             return 'likeit';
-    }
+    },
 
 
 });
@@ -128,7 +132,23 @@ Template.postShow.helpers({
 });
 
 
+Template.posts.events({
 
+//    isAdminUser: function () {
+//        return Roles.userIsInRole(Meteor.user(), ['admin']);
+    'click #admin': function(e , t){
+        var isAdmin  = Roles.userIsInRole(Meteor.user(), ['admin']);
+        if (isAdmin){
+            Session.set('createError', 'Ha ha ha');
+        }
+    }
+})
+
+Template.more.events({
+    'click #more': function(e,t){
+        Session.set('postsn', Session.get('postsn') + 10);
+}
+})
 
 Template.header_home.events({
     'click #btnNewCat': function (e, t) {
@@ -153,15 +173,30 @@ Template.header_home.events({
             var catVal = String(e.target.value || "");
             if (catVal) {
                 if (Meteor.userId()) {
-
+                    var postText = catVal;
+                    var tagslist = postText.split(' ');
+                    var arr=[];
+                    $.each(tagslist, function(i,val){
+                        if(tagslist[i].indexOf('#') == 0){
+                        arr.push(tagslist[i]);
+                            var tag = tags.findOne({tag:tagslist[i]})
+                            if(!tag){
+                                tags.insert({tag:tagslist[i],count: 1,dtime: new Date()});
+                            }else{
+                                tags.update(tag._id, {$inc: {count: 1}},{dtime: new Date()});
+                            }
+                        }
+                    })
                     posts.insert({
                         post: catVal,
                         created_at: new Date(),
+                        tags: arr,
                         //created_at: new Date().getTime(),
                         //user_id: Meteor.user()._id
                         //author : Meteor.user()._id
                         author: Meteor.userId(),
                     });
+
                     //post._id = posts.insert(post);
                     //$('#add-post').fadeOut();
 
@@ -208,6 +243,7 @@ Meteor.setInterval(function () {
 
 
 
+
 //home page post events
 Template.postSingle.events({
 
@@ -226,10 +262,19 @@ Template.postSingle.events({
     
     'click .commentshow': function (e, t) {
         Session.set('commentForm', this._id);
-        Meteor.flush();
-        $(".addcomment").focus();
-
+        Session.set('commentOpened','commentOpened');
+         //$(e.target).toggleClass( "marked" );
+        
     },
+//    'click .marked': function () {
+//        $(".commentsbox").slideUp();
+//        Session.set('commentOpened',false);
+//        Meteor.setTimeout(function () {
+//            Session.set('commentForm', false);
+//        }, 1000)
+//
+//
+//    },    
 
 
     //edit open session to edit 
@@ -255,13 +300,12 @@ Template.postSingle.events({
         if (!Meteor.userId()){
             Session.set("createError", "login to rate");
         }
-
-
     },
 
     'click .taglink': function (e, t) {
-        var hashtag = $('.taglink').attr("alt");
+        var hashtag = $(e.target).attr("alt");
         Session.set('hashtag', hashtag);
+        Meteor.call('resetPostsNo');
         
     },
 
