@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand" href="/">IMPACT NEWS</a>
+                        <a class="navbar-brand" href="{{pathFor 'main'}}">IMPACT NEWS</a>
                     </div>
                     <!--                    <div class="navbar-collapse collapse">-->
 
@@ -17,7 +17,7 @@
 
 
 
-                        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span></a></li>
+                        {{#if currentUser}}<li><a href="/profile"><span class="glyphicon glyphicon-user"></span></a></li>{{/if}}
 
 
                         <li>

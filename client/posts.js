@@ -53,9 +53,12 @@ Template.header_home.new_cat = function () {
 
 Session.setDefault('editing_listname', null);
 
+
 Template.postSingle.editing = function () {
     return Session.equals('editing_listname', this._id);
 };
+// editing a post
+
 
 
 
@@ -67,6 +70,14 @@ Template.postSingle.helpers({
             _id: userid
         });
         return (username);
+    },
+    avatar: function () {
+        var userid = this.author;
+        var username = Meteor.users.findOne({
+            _id: userid
+        });
+        var avatar = username.avatar;
+        return (avatar);
     },
     date: function () {
         date = moment(this.created_at).fromNow();
@@ -134,20 +145,20 @@ Template.postShow.helpers({
 
 Template.posts.events({
 
-//    isAdminUser: function () {
-//        return Roles.userIsInRole(Meteor.user(), ['admin']);
-    'click #admin': function(e , t){
-        var isAdmin  = Roles.userIsInRole(Meteor.user(), ['admin']);
-        if (isAdmin){
+    //    isAdminUser: function () {
+    //        return Roles.userIsInRole(Meteor.user(), ['admin']);
+    'click #admin': function (e, t) {
+        var isAdmin = Roles.userIsInRole(Meteor.user(), ['admin']);
+        if (isAdmin) {
             Session.set('createError', 'Ha ha ha');
         }
     }
 })
 
 Template.more.events({
-    'click #more': function(e,t){
+    'click #more': function (e, t) {
         Session.set('postsn', Session.get('postsn') + 10);
-}
+    }
 })
 
 Template.header_home.events({
@@ -170,20 +181,34 @@ Template.header_home.events({
     //add post
     'keyup #add-post-front': function (e, t) {
         if (e.which === 13) {
-            var catVal = String(e.target.value || "");
-            if (catVal) {
+            //var catVal = String(e.target.value || "");
+            var catVal = $('#add-post-front').val();
+
+            if (catVal.length > 10) {
                 if (Meteor.userId()) {
                     var postText = catVal;
                     var tagslist = postText.split(' ');
-                    var arr=[];
-                    $.each(tagslist, function(i,val){
-                        if(tagslist[i].indexOf('#') == 0){
-                        arr.push(tagslist[i]);
-                            var tag = tags.findOne({tag:tagslist[i]})
-                            if(!tag){
-                                tags.insert({tag:tagslist[i],count: 1,dtime: new Date()});
-                            }else{
-                                tags.update(tag._id, {$inc: {count: 1}},{dtime: new Date()});
+                    var arr = [];
+                    $.each(tagslist, function (i, val) {
+                        if (tagslist[i].indexOf('#') == 0) {
+                            arr.push(tagslist[i]);
+                            var tag = tags.findOne({
+                                tag: tagslist[i]
+                            })
+                            if (!tag) {
+                                tags.insert({
+                                    tag: tagslist[i],
+                                    count: 1,
+                                    dtime: new Date()
+                                });
+                            } else {
+                                tags.update(tag._id, {
+                                    $inc: {
+                                        count: 1
+                                    }
+                                }, {
+                                    dtime: new Date()
+                                });
                             }
                         }
                     })
@@ -191,45 +216,36 @@ Template.header_home.events({
                         post: catVal,
                         created_at: new Date(),
                         tags: arr,
-                        //created_at: new Date().getTime(),
-                        //user_id: Meteor.user()._id
-                        //author : Meteor.user()._id
+
                         author: Meteor.userId(),
                     });
-
-                    //post._id = posts.insert(post);
-                    //$('#add-post').fadeOut();
 
                     $("#add-post-front").slideUp("slow");
                     Meteor.setTimeout(function () {
                         Session.set('adding_category', false);
                     }, 500)
-                    //$(event.target).slideUp('slow');
-                    //$('#posts' + event.currentTarget.id).slideUp('slow');
-                    //$(this._id).slideUp('slow');
-                    //$( "#posts:first" ).css( "font-style", "italic" );
-                    //$( ".post" ).first().css( "background-color", "red" );
-                } else { //if the user is not logged in
-                    //throw new Meteor.Error(422, 'Please provide a Last Name');
-                    Session.set('adding_category', false);
-                    //Session.set("createError", "You have to login to add posts");
-                    Meteor.call('createErrorMsg', 'You have to login to add posts');
 
-                    // working
-                    //Meteor.setTimeout(function() {$("#error").css({display:"none"});}, 1000) // working
+
+                    Session.set('adding_category', false);
+
+                    Meteor.call('createErrorMsg', 'You have to login to add posts');
 
 
                 }
-            }
+            } else
+                Meteor.call('createErrorMsg', 'The post should be more than 10 letters and not empty  ');
+            //$(e.target).val("").select().focus();
         }
-        if (e.which === 27) {
+
+
+        if (e.which === 27)
 
             $("#add-post-front").slideUp();
-            Meteor.setTimeout(function () {
-                Session.set('adding_category', false);
-            }, 500)
+        Meteor.setTimeout(function () {
+            Session.set('adding_category', false);
+        }, 500)
 
-        }
+
 
     },
 
@@ -248,33 +264,26 @@ Meteor.setInterval(function () {
 Template.postSingle.events({
 
     'click .delete-link': function () {
-        //if (confirm('Are you sure you want to remove this.')) {
-        //(confirm('are you sure you want to leave?'))  {
-        //$(this._id).fadeOut().fadeIn();
-
 
         posts.remove(this._id);
 
-
-        //}
-        //}
     },
-    
+
     'click .commentshow': function (e, t) {
         Session.set('commentForm', this._id);
-        Session.set('commentOpened','commentOpened');
-         //$(e.target).toggleClass( "marked" );
-        
+        Session.set('commentOpened', 'commentOpened');
+        //$(e.target).toggleClass( "marked" );
+
     },
-//    'click .marked': function () {
-//        $(".commentsbox").slideUp();
-//        Session.set('commentOpened',false);
-//        Meteor.setTimeout(function () {
-//            Session.set('commentForm', false);
-//        }, 1000)
-//
-//
-//    },    
+    //    'click .marked': function () {
+    //        $(".commentsbox").slideUp();
+    //        Session.set('commentOpened',false);
+    //        Meteor.setTimeout(function () {
+    //            Session.set('commentForm', false);
+    //        }, 1000)
+    //
+    //
+    //    },    
 
 
     //edit open session to edit 
@@ -296,8 +305,8 @@ Template.postSingle.events({
                 user: Meteor.userId(),
                 post: this._id
             });
-        
-        if (!Meteor.userId()){
+
+        if (!Meteor.userId()) {
             Session.set("createError", "login to rate");
         }
     },
@@ -306,7 +315,24 @@ Template.postSingle.events({
         var hashtag = $(e.target).attr("alt");
         Session.set('hashtag', hashtag);
         Meteor.call('resetPostsNo');
-        
+
+    },
+    'click .share': function (e, t) {
+        $(e.currentTarget).siblings(".sharebox").show().addClass('animated  bounceIn');
+
+
+
+    },
+    'mouseleave .sharebox': function (e, t) {
+        Meteor.setTimeout(function () {
+            $(e.currentTarget).addClass('animated  bounceOut');
+            //$(e.currentTarget).css('display','none');
+        }, 1000);
+        Meteor.setTimeout(function () {
+
+            $(e.currentTarget).css('display', 'none');
+        }, 2000);
+
     },
 
     // edit in place 

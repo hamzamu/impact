@@ -27,9 +27,9 @@ Meteor.subscribe("tags");
 
 
 Session.setDefault('postsn', 20);
-
+var query = { $regex: Session.get('prefix') + ".*", $options: 'i' };
 Deps.autorun(function () {
-    Meteor.subscribe('posts', Session.get('postsn'));
+    Meteor.subscribe('posts', Session.get('postsn'), query);
 })
 
 Session.setDefault('createError', null);
@@ -37,11 +37,11 @@ Template.errorz.error = function () {
     return Session.get("createError");
 };
 
-Template.posts.hasmore = function () {
-    //var postscounts = posts.find().count();
-    //return getPostsCount();
-    return posts.find().count();
-}
+//Template.posts.hasmore = function () {
+//    //var postscounts = posts.find().count();
+//    //return getPostsCount();
+//    return posts.find().count();
+//}
 
 
 Template.sidebarnav.hashlist = function () {
@@ -77,7 +77,8 @@ UI.body.events({
         e.preventDefault();
         $('body').toggleClass('nav-expanded');
         $('body').addClass('stop-scrolling');
-    },
+    },    
+
     'click #nav-close': function (e, t) {
         $('body').removeClass('nav-expanded');
         $('body').removeClass('stop-scrolling');

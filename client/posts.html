@@ -2,17 +2,13 @@
     <div id="posts" class="">
 
         <div class="post bordertop"></div>
-        
-        <!--<a id="admin">admin</a>{{hasmore}}-->
-        
-        
-        {{#each posts}} {{> postSingle}} 
-        {{> commentsbox}}
-        {{/each}}
 
-        {{> more}}
-        
-        
+        <!--<a id="admin">admin</a>{{hasmore}}-->
+
+
+        {{#each posts}} {{> postSingle}} {{> commentsbox}} {{/each}} {{> more}}
+
+
         <div class="post borderbottom"></div>
         <div class="margintop"></div>
     </div>
