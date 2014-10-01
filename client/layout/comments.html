@@ -1,0 +1,58 @@
+<template name="commentsbox">
+    {{#if commentForm}} {{> comments}} {{/if}}
+</template>
+
+
+
+<template name="comments">
+    <div class="commentsbox">
+        <div class="commentslist">
+            {{#each commentsList}}
+            <div class="comment">
+            <p><img src="{{username.avatar}}" class="pull-left" />
+            
+                        <a href="{{pathFor 'user_profile' _id=user}}" class="pull-left" >{{username.username}}</a>
+            <span class="pull-right">{{date}}</span></p>
+
+            <p>{{comment}}</p>
+                </div>
+            {{/each}}
+        </div>
+
+
+        <div class="commentsform">
+            {{#if currentUser}}
+            <form role="form">
+                <textarea class="form-control commentText" rows="2"></textarea>
+            </form>
+
+            <div style="overflow:hidden;">
+                <a herf="#" class="btn btn-success pull-right pad btn-sm" id="addComments">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+                <a class="btn btn-default pull-right pad btn-sm" herf="#" id="clearComment">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+
+            </div>
+
+
+            {{else}}
+
+
+            <div class="well well-sm">You have to login to add comments</div>
+
+
+            {{/if}}
+
+        </div>
+        <!--commentsform-->
+        <p>
+            <a href="#" class="btn btn-default btn-sm backgroundbw"><span class="glyphicon glyphicon-th-list"></span> Discussion</a>
+
+            <a class="btn btn-sm btn-danger more" href="#">more</a>
+            <a href="#" id="closeComments" class="closecircle"><span class="glyphicon glyphicon-chevron-up"></span></a>
+        </p>
+    </div>
+    <!--commentsbox-->
+</template>

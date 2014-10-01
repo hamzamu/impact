@@ -1,0 +1,132 @@
+<template name="notifcationnav">
+        <div class="col-md-3">
+
+            {{#if currentUser}}
+
+            <div class="list-group shadow">
+                <a href="#" class="list-group-item active">
+                    Notifications
+                    <span class="label label-default pull-right">2</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    Messages
+                    <span class="label label-default pull-right">2</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    Chat
+                    <span class="label label-default pull-right">2</span>
+                </a>
+            </div>
+            {{else}}
+            <div class="list-group shadow">
+                <a href="#" class="list-group-item active">Active news
+                    <span class="badge">9</span>
+                </a>
+                <a href="#" class="list-group-item">Current
+                    <span class="badge danger">2</span>
+                </a>
+                <a href="#" class="list-group-item">Crisis
+                    <span class="badge">7</span>
+                </a>
+            </div>
+
+            {{/if}}
+
+        </div>
+</template>
+
+<template name="sidebarnav">
+<div class="col-md-3">
+
+    <div class="list-group shadow">
+        <div class="list-group-item active">
+            <b>Active News</b>
+
+        </div>
+        
+        {{#each hashlist}}
+        <a href="/s/{{tagout}}" class="list-group-item taglink" alt="{{tagout}}">{{tag}}
+        <span class="label label-danger pull-right">{{count}}</span>
+        </a>
+        {{/each}}
+        
+        <!--<a href="#" class="list-group-item">
+            #Cairo
+            <span class="label label-danger pull-right">2</span>
+
+        </a>-->
+
+
+
+    </div>
+
+
+
+    <ul class="list-group shadow" style="display:none;">
+        <li class="list-group-item active">
+            <span class="badge">14</span>
+            Cras justo odio
+        </li>
+        <li class="list-group-item">
+            <span class="badge">2</span>
+            Dapibus ac facilisis in
+        </li>
+        <li class="list-group-item">
+            <span class="badge">1</span>
+            Morbi leo risus
+        </li>
+    </ul>
+
+    <ul class="hash" style="display:none;">
+        <h5 style="text-transform:uppercase;font-weight:bold;">Today's topics</h5>
+        <li class="" title="Key active">
+            <a href="">#Cars</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Libya</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Scandles</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Istanbul</a>
+        </li>
+
+    </ul>
+    <ul class="hash" style="display:none;">
+        <h5 style="text-transform:uppercase;font-weight:bold;">Hot Cities</h5>
+        <li class="" title="Key active">
+            <a href="">#Egypt</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Libya</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Turkey</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Istanbul</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Syria</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Iraq</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#USA</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Japan</a>
+        </li>
+        <li class="" title="Key active">
+            <a href="">#Social Media</a>
+        </li>
+    </ul>
+
+
+
+</div>
+
+    </template>
+

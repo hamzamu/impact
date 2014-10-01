@@ -1,0 +1,52 @@
+<template name="searchpage">
+    {{>nav}}
+
+    <div class="container">
+
+ 
+           <div class="outerContainer">
+            <div class="innerContainer">
+                
+                
+                    <div class="form-group" id="form-search">
+
+                        <input type="text" class=" search-query" id="search" placeholder="Search">
+                    </div>
+                <br />
+                <p>Seach topics , news , locations , city s, events or dates</p>
+            </div>
+        </div>
+        
+   
+        
+        {{> searchRes }}
+        
+        
+        
+    </div>
+    <!--container-->
+
+
+
+
+
+
+</template>
+
+
+<template name='searchRes'>
+    
+    {{#each searchResults}}
+    {{post}}
+    {{/each}}
+
+</template>
+
+<template name='lists'>
+    datadd
+    {{#each posts}}
+    <p>{{#markdown}}{{postin}}{{/markdown}}</p>   
+    {{/each}}
+
+</template>
+

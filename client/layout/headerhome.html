@@ -1,0 +1,77 @@
+<!--Header home including adding posts n search button -->
+<template name='header_home'>
+
+    <div class="row">
+
+        {{> searchnav}}
+
+        <!--<div class="{{open}}" id="clickme">Click me!</div>-->
+
+
+        <div class="col-md-6 ">
+
+
+            {{> errorz }}
+
+            <div class=" panel panel-success  shadow">
+
+                <div class="panel-heading">
+                    <h4 class="panel-title">Add a Post !</h4>
+                </div>
+
+                <div class=" borderbottom panel-body">
+                    <div id="add-post-form" class="post_for">
+                        {{#if new_cat}}
+
+                        <p>
+                            <textarea class="form-control" id="add-post-front" rows="3"></textarea>
+                        </p>
+
+
+                        <div class="form-group">
+
+                            <div class="col-lg-12">
+                                <span class="btn myFileInput btn-danger btn-file pull-left"><i class="glyphicon glyphicon-picture" style="font-size:20px;"></i><input type="file"></span>
+                                {{#each files}}
+                                <img src="{{url}}" width="90px" height="120px" class="pull-right img-thumbnail" />{{/each}}
+                            </div>
+
+
+                        </div>
+
+
+
+
+                        <div class="col-lg-12">
+                            <a class="btn btn-default pull-right" id="newpostclose">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        {{else}}
+                        
+                            <a class=" btn btn-warning" id="btnNewCat">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </a>
+                        
+
+
+                        {{/if}}
+
+                    </div>
+                    <!--form-->
+                </div>
+            </div>
+
+        </div>
+        <!---col-->
+
+
+        {{> notifcationnav}}
+        <!---col-->
+
+
+    </div>
+    <!--row-->
+
+</template>
+

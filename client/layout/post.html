@@ -1,0 +1,163 @@
+<template name='postSingle'>
+
+
+
+    <div class="post {{deleted}} po embed" id="{{_id}}">
+        
+    
+    <!--{{image}}-->
+
+
+
+        
+        {{#if currentUser}} {{#if editing}}
+
+        <textarea class="list-name-input form-control edit_post" id="edit_post" rows="5" value="{{post}}">{{post}}</textarea>
+
+        {{else}}
+
+        <h4>{{#markdown}}{{postin}}{{/markdown}}</h4>
+        {{/if}} {{else}}
+        <!--<h4><a href="{{pathFor 'postShow'}}">{{post}}</a></h4>-->
+        <h4>{{#markdown}}{{postin}}{{/markdown}}</h4>
+        {{/if}}
+
+
+<!--        <div class="fb-post" data-href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553" data-width="500"></div>-->
+
+        
+        
+
+      
+                
+    {{#each files}}
+    <!--       <img src="{{url}}" />-->
+    <p><img src="{{this.url store='thumbs'}}" class="img-responsive" alt="thumbnail" ></p>
+    {{/each}}
+        
+
+
+        <!--{{slug}}-->
+
+        <p class="bs-component tags">
+            {{#if confirmed}}<span class=" label label-default">Confirmed</span>{{/if}} {{#if eyewitness}}<span class="label label-primary">Eyewitness</span>{{/if}} {{#if agancies}}<span class="label label-danger">Agancies</span>{{/if}} {{#if social}}<span class="label label-success">Social media</span>{{/if}} {{#if official}}<span class="label label-warning">Official</span>{{/if}}
+
+        </p>
+
+
+
+        <div class="embed">{{#markdown}}{{ombed}}{{/markdown}} </div>  
+        
+        
+<!--
+      {{#markdown}}{{youtube}}{{/markdown}}
+      
+      <div class="embed">
+        {{#markdown}}{{facebook}}{{/markdown}}
+    </div>
+-->
+        
+        <div id="fb-root"></div>
+        
+
+
+        <div class="row">
+            <div class="col-md-2">{{#if username.avatar}}
+            <img src="{{username.avatar}}" class="avatar"/>{{else}}
+            <span class="iconavatar glyphicon glyphicon-user userprofileicon opicon" style=""></span>
+            {{/if}} </div>
+            
+           <div class="col-md-10"><p>
+            {{#if username.profile.name}}
+            <a href="{{pathFor 'user_profile' _id=author}}">{{username.profile.name}}</a>
+            {{else}}
+
+            <a href="{{pathFor 'user_profile' _id=author}}">{{username.username}}</a>
+            {{/if}}	
+
+            <a href="{{pathFor 'postShow'}}"><span class="pull-right">{{date}}</span></a></p>
+                </div>
+        </div>
+
+
+
+
+
+        <p class="bs-component tags">
+
+
+            <a href="#" class="rateit cdl2 {{iflike}}"><span class="label label-default cdl2 ">{{numrates}}</span> <span class="glyphicon glyphicon-thumbs-up"></span></a>
+
+
+            <a href="#" class=" cdl2"><span class="glyphicon  glyphicon-map-marker"></span></a>	
+
+
+            <a href="#" class="commentshow cdl2"><span class="glyphicon glyphicon-comment"></span></a> 
+
+            <a href="#" class="share cdl2"><span class="glyphicon glyphicon-share"></span></a>
+
+            <div class="sharebox">
+                <a href="#" class="socialbtn btn btn-xs btn-primary"><span class="fa fa-facebook-square"></span></a>
+                <a href="#" class="socialbtn btn btn-xs btn-info"><span class="fa fa-twitter-square"></span></a>
+                <a href="#" class="socialbtn btn btn-xs btn-danger"><span class="fa fa-google-plus-square"></span></a>
+            </div>
+
+
+            {{#if currentUser}}
+
+
+
+
+            <a href="#" class="delete-link cdl"><span class="glyphicon  glyphicon-remove "></span></a>
+            <a href="#" class="edit cdl"><span class="glyphicon  glyphicon-edit"></span></a>
+            {{/if}}
+        </p>
+
+
+
+    </div>
+</template>
+
+
+
+
+
+
+<template name="postShow">
+    <div class="margintop"></div>
+    <div class="container">
+        {{> header_home}}
+
+        <div class="row">
+            {{> controlnav }}
+
+
+            <div class="col-md-6 ">
+                <!--col-md-offset-2-->
+
+
+                {{> postSingle}}
+                <!--post-->
+
+                {{> comments}}
+
+            </div>
+            <!--col for posts-->
+
+
+
+            {{> sidebarnav}}
+
+
+
+        </div>
+        <!--row-->
+
+    </div>
+    <!--container-->
+
+
+    {{> searchbox}}
+
+
+</template>

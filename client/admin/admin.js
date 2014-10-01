@@ -226,15 +226,15 @@
 	            //var post = tmpl.find('#add_new_post').value;
 
 
-	            if (post.length > 10)
+	            if (post)
 	                posts.insert({
 	                    post: post,
 	                    created_at: new Date(),
 	                });
 	            $(e.target).val("").select().focus();
 	        }
-	        if (post.length < 0)
-	            Meteor.call('createErrorMsg', 'You have to login to add posts');
+//	        if (post.length < 0)
+//	            Meteor.call('createErrorMsg', 'You have to login to add posts');
 
 
 

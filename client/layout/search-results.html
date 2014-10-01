@@ -1,0 +1,45 @@
+<template name='searchTest'>
+    
+     <div class="margintop"></div>
+    <div class="container">
+        {{> header_home}}
+
+        <div class="row">
+            {{> controlnav }}
+
+
+
+
+   <div class="col-md-6">
+   <div class="post">
+    
+       <h4><small>Searching for </small>{{searchQ}}</h4>
+       
+       </div>
+    {{#each posts}}
+   {{>postSingle}}
+   {{> commentsbox}}
+    {{/each}}
+       
+       {{> more}}
+       <div class="margintop"></div>
+       </div> 
+
+
+            <!--col for posts-->
+
+
+
+            {{> sidebarnav}}
+
+
+
+        </div>
+        <!--row-->
+
+    </div>
+    <!--container-->
+        {{> searchbox}}
+</template>
+
+

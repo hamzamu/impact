@@ -1,0 +1,39 @@
+<template name="posts">
+    <div id="posts" class="">
+
+
+
+
+        <div class="post bordertop"></div>
+
+        <!--<a id="admin">admin</a>{{hasmore}}-->
+
+
+        {{#each posts}} {{> postSingle}} {{> commentsbox}} {{/each}} 
+        
+        
+        
+        
+        {{> more}}
+
+
+        <div class="post borderbottom"></div>
+        <div class="margintop"></div>
+    </div>
+
+
+
+
+</template>
+
+<template name="more">
+  <div class="post" style="text-align:center;">
+          
+    
+    {{#if nextPath}}
+    <a class="load-more btn btn-sm btn-danger" href="{{nextPath}}">Load more</a>
+    {{/if}}
+    
+    </div>
+</template>
+

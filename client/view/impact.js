@@ -4,7 +4,13 @@ Accounts.ui.config({
 
 
 
-
+Template._loginButtonsLoggedInDropdown.events({
+    'click #login-buttons-edit-profile': function(event) {
+        event.stopPropagation();
+        Template._loginButtons.toggleDropdown();
+        Router.go('main');
+    }
+});
 
 
 Template.navside.helpers({
@@ -16,61 +22,13 @@ Template.navside.helpers({
 
 
 
-
-
-//Meteor.subscribe('posts');
-Meteor.subscribe("directory");
-Meteor.subscribe("rates");
-Meteor.subscribe("comments");
-Meteor.subscribe("tags");
-//Meteor.subscribe("postscount");
-
-
-Session.setDefault('postsn', 20);
-var query = { $regex: Session.get('prefix') + ".*", $options: 'i' };
-Deps.autorun(function () {
-    Meteor.subscribe('posts', Session.get('postsn'), query);
-})
-
 Session.setDefault('createError', null);
 Template.errorz.error = function () {
     return Session.get("createError");
 };
 
-//Template.posts.hasmore = function () {
-//    //var postscounts = posts.find().count();
-//    //return getPostsCount();
-//    return posts.find().count();
-//}
 
 
-Template.sidebarnav.hashlist = function () {
-    return tags.find({}, {
-        limit: 10,
-        sort: {
-            count: -1,
-            dtime: -1
-        }
-    });
-}
-
-Template.sidebarnav.helpers({
-    tagout: function () {
-        var tag = this.tag;
-        var replacex = tag.replace(/#(\S*)/ig, "$1");
-        return replacex;
-    }
-
-})
-
-Template.sidebarnav.events({
-    'click .taglink': function (e, t) {
-        var hashtag = $(e.target).attr("alt");
-        Session.set('hashtag', hashtag);
-        Meteor.call('resetPostsNo');
-
-    },
-})
 
 UI.body.events({
     'click #nav-expander': function (e, t) {
@@ -107,6 +65,9 @@ Meteor.methods({
     },
     resetPostsNo: function () {
         Session.set('postsn', 20);
+    },
+    addPost: function(postText,postDate,postAuthor,postTag){
+    
     }
 
 });

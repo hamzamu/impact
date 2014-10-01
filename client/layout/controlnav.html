@@ -1,0 +1,80 @@
+<template name="searchnav">
+    <div class="col-md-1 col-md-offset-1 hidden-xs hidden-sm">
+
+
+        <ul class="icons">
+            <li class="ico" id="openi">
+                <a href="#" class="green bordertop">
+                    <span class="glyphicon bs-glyphicons  glyphicon-search"></span>
+                </a>
+            </li>
+            <li class="ico" id="menuside">
+                <a href="#" class="borderbottom xree">
+                    <span class="glyphicon bs-glyphicons  glyphicon-th"></span>
+                </a>
+            </li>
+        </ul>
+
+
+    </div>
+
+
+</template>
+
+
+
+<template name="controlnav">
+    <div class="col-md-1 hidden-xs hidden-sm col-md-offset-1">
+        <ul class="icons">
+
+
+            <li class="ico" id="home">
+                <a href="{{pathFor 'main'}}" class=" bree bordertop">
+                    <span class="glyphicon bs-glyphicons  glyphicon-home"></span>
+                </a>
+            </li>
+
+            <!--
+            <li class="ico" title="Calender">
+                <a href="" class="blue">
+                    <span class="glyphicon bs-glyphicons  glyphicon-calendar"></span>
+                </a>
+            </li>
+            <li class="ico" title="Settings">
+                <a href="" class="bree">
+                    <span class="glyphicon bs-glyphicons  glyphicon-cog"></span>
+                </a>
+            </li>
+-->
+            {{#if currentUser}}
+            <li class="ico" id="profile">
+                <a href="" class="red">
+                    <span class="glyphicon bs-glyphicons  glyphicon-user"></span>
+                </a>
+            </li>
+            <li class="ico" id="logout">
+                <a href="#" class="zree borderbottom">
+                    <span class="glyphicon bs-glyphicons  glyphicon-log-out"></span>
+                </a>
+            </li>
+            {{else}}
+
+            <li class="ico" id="login">
+                <a href="/signin" class="zree ">
+                    <span class="fa fa-sign-in"></span>
+                </a>
+            </li>
+            <li class="ico" id="signup">
+                <a href="/signup" class="red borderbottom">
+                    <span class="fa  fa-power-off"></span>
+                </a>
+            </li>            
+            {{/if}}
+
+
+        </ul>
+
+    </div>
+</template>
+
+

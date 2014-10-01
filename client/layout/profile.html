@@ -1,0 +1,131 @@
+<template name="profile">
+    <div class="margintop"></div>
+
+
+    <div class="margintop"></div>
+    <div class="container">
+        {{> header_home}}
+
+        <div class="row">
+            {{> controlnav }}
+
+
+
+
+            <div class="col-md-6">
+                <div class="post">
+
+                    <h3>
+                        {{services.twitter.screenName}}
+                        {{profile.name}}
+                        <span>{{username}}</span>
+                        <small> 's Profile</small>
+
+                                  
+                    </h3>
+                                            <img src=" {{services.twitter.profile_image_url}}"/>
+                    <img src=" {{fbprofile}}"/>
+
+                    
+                   
+
+                </div>
+                <div class="post">
+                    <h4>latest posts</h4>
+                </div>
+
+                {{#each lastsposts}} {{> postSingle}} {{> commentsbox}} {{/each}} {{> more}}
+                <div class="margintop"></div>
+            </div>
+
+
+
+
+            <!--col for posts-->
+
+
+
+            {{> sidebarnav}}
+
+
+
+        </div>
+        <!--row-->
+
+    </div>
+    <!--container-->
+    {{> searchbox}}
+</template>
+
+
+<template name="user_profile">
+
+    <div class="margintop"></div>
+
+
+    <div class="margintop"></div>
+    <div class="container">
+        {{> header_home}}
+
+        <div class="row">
+            {{> controlnav }}
+
+
+
+
+            <div class="col-md-6">
+                <div class="post">
+
+                   
+                    <div  style="width:15%;" class="pull-left">
+                                        {{#if avatar}}
+                    <!--<img src=" {{services.twitter.profile_image_url}}"/>>-->
+                    <img src="{{avatar}}"/>
+                   {{else}} {{#if services.twitter.profile_image_url}}
+                    <img src=" {{services.twitter.profile_image_url}}"/>
+                    {{else}}
+                    
+                    <span class="iconavatar glyphicon glyphicon-user userprofileicon" style=""></span>
+<!--                        <img src="http://pbs.twimg.com/profile_images/437889963741294592/ikeqnt1q_normal.jpeg">-->
+                    {{/if}}
+                    {{/if}}
+                    </div>
+                    <div style="width:80%;margin-top:-10px;"  class="pull-right">
+                    <h3>
+                                           <!--{{services.twitter.screenName}}
+                        {{profile.name}}-->
+                        <span></span>
+                        <span>{{username}}</span>
+                        <small> 's Profile</small>
+                    </h3></div>
+
+         
+                    
+
+                </div>
+                <div class="post">
+                    <h4>latest posts</h4>
+                </div>
+
+                {{#each lastsposts}} {{> postSingle}} {{> commentsbox}} {{/each}} {{> more}}
+                <div class="margintop"></div>
+            </div>
+
+
+
+
+            <!--col for posts-->
+
+
+
+            {{> sidebarnav}}
+
+
+
+        </div>
+        <!--row-->
+
+    </div>
+    <!--container-->
+    {{> searchbox}}    
+</template>

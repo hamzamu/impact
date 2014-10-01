@@ -18,13 +18,9 @@
 
 
                         {{#if currentUser}}<li><a href="/profile"><span class="glyphicon glyphicon-user"></span></a></li>{{/if}}
-
-
-                        <li>
-                            <a href="#">
-                                <!-- {{> loginButtons }} -->
-                            </a>
-                        </li>
+                        {{> loginButtons}}
+                            
+                        
                         <!--<li>                    <a href="" class="">
 tr
                     </a></li>                            <li>                    <a href="" class="">
@@ -55,6 +51,12 @@ ar - ع
 
 </template>
 
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+    <button class="btn btn-danger btn-block" id="login-buttons-edit-profile">Edit profile</button>
+</template>
+
+
+
 <template name='navside'>
     <nav id="navoff">
         <ul class="list-unstyled main-menu">
@@ -72,7 +74,10 @@ ar - ع
                                     {{/if}}
                                     {{/if}}
             
-            {{> accountButtons}}
+            
+            
+            
+            
 
         </ul>
     </nav>
