@@ -23,12 +23,12 @@ mrt:publish-with-relations@0.1.5
 iron:router
 ian:accounts-ui-bootstrap-3
 cfs:standard-packages
-cfs:filesystem
 cfs:graphicsmagick
 cfs:ui
 cfs:file
-cfs:gridfs
 cfs:base-package
 cfs:storage-adapter
 cfs:filesaver
+cfs:filesystem
+cfs:gridfs
 

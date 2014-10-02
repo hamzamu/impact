@@ -77,7 +77,7 @@
                 <div class="post">
 
                    
-                    <div  style="width:15%;" class="pull-left">
+                    <div class="col-md-2">
                                         {{#if avatar}}
                     <!--<img src=" {{services.twitter.profile_image_url}}"/>>-->
                     <img src="{{avatar}}"/>
@@ -85,24 +85,32 @@
                     <img src=" {{services.twitter.profile_image_url}}"/>
                     {{else}}
                     
-                    <span class="iconavatar glyphicon glyphicon-user userprofileicon" style=""></span>
+<!--                    <span class="iconavatar glyphicon glyphicon-user userprofileicon" style=""></span>-->
+                         <img src="/img/user-bg.png" width="90" height="90" class="img-circle"/>
 <!--                        <img src="http://pbs.twimg.com/profile_images/437889963741294592/ikeqnt1q_normal.jpeg">-->
                     {{/if}}
                     {{/if}}
                     </div>
-                    <div style="width:80%;margin-top:-10px;"  class="pull-right">
-                    <h3>
+                    <div class="col-md-8">
+                    <p style="line-height:120px;padding-left:30px;"><h3>
                                            <!--{{services.twitter.screenName}}
                         {{profile.name}}-->
                         <span></span>
                         <span>{{username}}</span>
                         <small> 's Profile</small>
-                    </h3></div>
+                    </h3></p></div>
 
          
                     
 
                 </div>
+                <div class="post">
+                    <a href="" class="btn btn-danger">edit profile</a>
+                    <a href="" class="btn btn-default pull-right" style="margin:0 4px 0 4px;">facebook</a>
+                    <a href="" class="btn btn-info pull-right">twitter</a>
+                    
+                </div>                
+            
                 <div class="post">
                     <h4>latest posts</h4>
                 </div>

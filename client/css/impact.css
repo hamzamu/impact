@@ -42,17 +42,20 @@ a.likeit{
 }
 
 .comment{
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px dotted #ddd;
+        margin-bottom: 5px;
 }.comment img{
         width:30px;
         height: 30px; 
         margin:3px;
-        border-radius: 3px;
+       
 }
 
+/*
 img.avatar{
      border-radius: 3px;
 }
+*/
 
 .comment p{
 

@@ -9,7 +9,12 @@
         <div class="commentslist">
             {{#each commentsList}}
             <div class="comment">
-            <p><img src="{{username.avatar}}" class="pull-left" />
+            <p>
+                {{#if username.avatar}}
+                <img src="{{username.avatar}}" class="pull-left" />
+                {{else}}
+                <img src="/img/user-bg.png" width="30" height="30" class="img-circle pull-left"/>
+                {{/if}}
             
                         <a href="{{pathFor 'user_profile' _id=user}}" class="pull-left" >{{username.username}}</a>
             <span class="pull-right">{{date}}</span></p>

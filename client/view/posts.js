@@ -199,9 +199,10 @@ Template.postSingle.helpers({
         var yregex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/gim;
         var fkregex =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
 
-       if (post.match(yregex))
+       if (post.match(yregex)){
            var replacexy = post.match(yregex);
             var replacex = replacexy.join(" ").replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+       }
            //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");
            
         
@@ -321,16 +322,20 @@ Template.header_home.events({
             var catVal = String(e.target.value || "");
             if (catVal) {
                 if (Meteor.userId()) {
-                    var postText = catVal;
+                    var postText = catVal.toLowerCase();
                     var tagslist = postText.split(' ');
                     var arr = [];
                     $.each(tagslist, function (i, val) {
                         if (tagslist[i].indexOf('#') == 0) {
+                            
                             arr.push(tagslist[i]);
                             var tag = tags.findOne({
                                 tag: tagslist[i]
-                            })
+                            });
+                            
                             if (!tag) {
+                                
+                                //var res = tagslist[i].toLowerCase();
                                 tags.insert({
                                     tag: tagslist[i],
                                     count: 1,
@@ -354,7 +359,7 @@ Template.header_home.events({
 
                //if (postText.match(yregex))
                    //var replacexy = postText.match(yregex);
-                    var replacex = postText.replace(yregex, '<p>$1 <p>&nbsp;&nbsp;&nbsp;');
+                    //var replacex = postText.replace(yregex, '<p>$1 <p>&nbsp;&nbsp;&nbsp;');
                    //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");                    
                     
                     posts.insert({

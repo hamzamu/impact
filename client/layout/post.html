@@ -59,17 +59,21 @@
         
         <div id="fb-root"></div>
         
-
+        <div class="row">
+            {{tags}}
+        </div>
 
         <div class="row">
             <div class="col-md-2">{{#if username.avatar}}
             <img src="{{username.avatar}}" class="avatar"/>{{else}}
-            <span class="iconavatar glyphicon glyphicon-user userprofileicon opicon" style=""></span>
+<!--            <span class="iconavatar glyphicon glyphicon-user userprofileicon opicon" style=""></span>-->
+                <img src="/img/user-bg.png" width="60" height="60" class="img-circle"/>
+            
             {{/if}} </div>
             
-           <div class="col-md-10"><p>
+           <div class="col-md-10"><p style="line-height:55px;">
             {{#if username.profile.name}}
-            <a href="{{pathFor 'user_profile' _id=author}}">{{username.profile.name}}</a>
+            <a href="{{pathFor 'user_profile' _id=author}}" >{{username.profile.name}}</a>
             {{else}}
 
             <a href="{{pathFor 'user_profile' _id=author}}">{{username.username}}</a>
