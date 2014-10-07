@@ -20,20 +20,37 @@ Template.postSingle.rendered = function () {
         $item.addClass('animated fadeInDown');
         //$item.fadeIn("slow");
         var yregex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
-        $('.embed').val().replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+        $('.embed').val().replace(yregex, '<iframe width="95%" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
     });
     
-    (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+//    Meteor.defer(function () {
+//    (function(d, s, id) {
+//          var js, fjs = d.getElementsByTagName(s)[0];
+//          if (d.getElementById(id)) return;
+//          js = d.createElement(s); js.id = id;
+//          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
+//          fjs.parentNode.insertBefore(js, fjs);
+//        }(document, 'script', 'facebook-jssdk'));
+//        
+//    });
+//    
+//   setTimeout(function() { 
+//    (function(d, s, id) {
+//          var js, fjs = d.getElementsByTagName(s)[0];
+//          if (d.getElementById(id)) return;
+//          js = d.createElement(s); js.id = id;
+//          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
+//          fjs.parentNode.insertBefore(js, fjs);
+//        }(document, 'script', 'facebook-jssdk'));
+//  }, 0);   
     
-    
-    
-    
+//     (function(d, s, id) {
+//          var js, fjs = d.getElementsByTagName(s)[0];
+//          if (d.getElementById(id)) return;
+//          js = d.createElement(s); js.id = id;
+//          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
+//          fjs.parentNode.insertBefore(js, fjs);
+//        }(document, 'script', 'facebook-jssdk'));   
 
 }
 
@@ -58,6 +75,9 @@ Template.searchTest.searchQ = function () {
 Session.set('adding_category', false);
 Template.header_home.new_cat = function () {
     return Session.equals('adding_category', true);
+};
+Template.header_home.postx = function () {
+    return Session.equals('textareax', true);
 };
 
 
@@ -197,18 +217,20 @@ Template.postSingle.helpers({
     var post = this.post;
         
         var yregex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/gim;
-        var fkregex =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
+        var fkregex =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/gim;
 
        if (post.match(yregex)){
            var replacexy = post.match(yregex);
-            var replacex = replacexy.join(" ").replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+            var replacex = replacexy.join(" ").replace(yregex, '<iframe width="100%" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
        }
            //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");
            
         
-        if (post.match(fkregex))
-            var replacex = post.replace(fkregex, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490"></div> '); 
+        if (post.match(fkregex)){
+            var replacexy = post.match(fkregex);
+            var replacex =replacexy.join(" ").replace(fkregex, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490px"></div> '); 
         
+        }
         
         //var matchlink = post.match(regix1);
 //        var regix1 =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
@@ -320,6 +342,9 @@ Template.header_home.events({
     'keyup #add-post-front': function (e, t) {
         if (e.which === 13) {
             var catVal = String(e.target.value || "");
+            
+            var testo = catVal.replace(/(http[^ ]+)/g,'$1\n'); 
+           
             if (catVal) {
                 if (Meteor.userId()) {
                     var postText = catVal.toLowerCase();
@@ -362,9 +387,10 @@ Template.header_home.events({
                     //var replacex = postText.replace(yregex, '<p>$1 <p>&nbsp;&nbsp;&nbsp;');
                    //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");                    
                     
-                    posts.insert({
+                    var postId = posts.insert({
                         //post: replacex,
-                        post: catVal,
+                        //post: catVal,
+                        post: testo,
                         created_at: new Date(),
                         tags: arr,
                         //created_at: new Date().getTime(),
@@ -373,6 +399,8 @@ Template.header_home.events({
                         author: Meteor.userId(),
                         image: Session.get('uploadedfileId'),
                     });
+                    
+                    Images.update(Session.get('uploadedfileId'), {$set: {post: postId}});
 
 
                     Session.set('uploadedfileId', null);
@@ -411,9 +439,42 @@ Template.header_home.events({
             
              Images.remove(Session.get('uploadedfileId')); 
 
+        }        
+        
+        if (e.which === 32) {
+
+            var post = $('#add-post-front').val();
+            $("#add-post-front").val().replace(/(http[^ ]+)/g, "$1 &#10;");
+            
+            
+      
+  
+
         }
 
     },
+//    
+//    "keypress #add-post-front":function(e,t){
+//        
+//        //$(e.target).val().replace(/\n/g, "&#10;");
+//        $(e.target).val().replace(/(http[^ ]+)/g, "$1 &#10;");
+//         //var new = catVal.replace(/(http[^ ]+)/g, "$1 &#10;");
+//        
+//        
+//        var post = $(e.target).val();
+//         Session.set('textareax', post);
+//        var textarea = document.getElementById('add-post-front');
+//        textarea.value = textarea.value.replace(new RegExp(/(http[^ ]+)/g,'\n$1'), '@import url("$1");');
+//        //textarea.value = textarea.value.replace(new RegExp('<link rel="stylesheet" type="text/css" href="(.*)" />', 'g'), '@import url("$1");');
+//         //post.replace(/(http[^ ]+)/g,'\n$1');
+//         //post.replace(/(http[^ ]+)/g,'hamza');
+//        post.replace(/(http[^ ]+)/g,'hamza');
+//        if(e.which === 32){
+//         //post.replace(/hamza/g,'hamzaxxx');
+//         post.replace(/(http[^ ]+)/g,'hamza');
+//             Session.set('textareax', post);
+//        }
+//    },
 
 
     "change .myFileInput": function (event, template) {
@@ -421,7 +482,7 @@ Template.header_home.events({
 
             Images.insert(file, function (err, fileObj) {
                 //Inserted new doc with ID fileObj._id, and
-                Session.set('uploadedfileId', fileObj.id);
+                Session.set('uploadedfileId', fileObj._id);
                 if (err)
                     Notifications.warn('Hey ya !', 'add an image fie please');
                 else
@@ -435,6 +496,16 @@ Template.header_home.events({
 
 
 
+//Template.header_home.rendered = function() {
+//  $(this.find('textarea')).val();
+//  textarea.value = textarea.value.replace(new RegExp(/(http[^ ]+)/g,'\n$1'), '@import url("$1");');
+//  var post = $('#add-post-front').val();
+//    Session.set('textareax', post);
+//   Meteor.defer(function() {
+//     var postx = $(this.find('textarea')).val(); 
+//       Session.set('textareax', post);
+//   });    
+//}
 
 //    Template.header_home.uploadedImage = function () {
 //        return Images.files.find({
@@ -443,6 +514,8 @@ Template.header_home.events({
 //
 //    };
 
+
+    Meteor.subscribe('Images', Session.get('uploadedfileId'));
     Template.header_home.files = function() {
      //return Images.files.find({_id : Session.get('uploadedfileId')}).fetch();
      return Images.files.find({_id : Session.get('uploadedfileId')}).fetch();

@@ -1,10 +1,10 @@
 //Meteor.subscribe('posts');
-Meteor.subscribe("directory");
+//Meteor.subscribe("directory");
 Meteor.subscribe("rates");
-Meteor.subscribe("comments");
+//Meteor.subscribe("comments");
 Meteor.subscribe("tags");
 
-Meteor.subscribe('Images');
+//Meteor.subscribe('Images');
 //Meteor.subscribe("postscount");
 
 

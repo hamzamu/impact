@@ -27,3 +27,12 @@
 }
 
 
+.embed{
+    padding-bottom: 10px;
+}
+
+
+.fb-post , .fb_iframe_widget{
+    width: 100%;
+}
+

@@ -31,4 +31,5 @@ cfs:storage-adapter
 cfs:filesaver
 cfs:filesystem
 cfs:gridfs
+reywood:publish-composite
 

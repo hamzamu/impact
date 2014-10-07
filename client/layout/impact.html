@@ -2,7 +2,9 @@
     <title>Impact</title>
 
     <meta charset="UTF-8">
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+<!--    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>-->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 
@@ -17,24 +19,23 @@
 </head>
 
 <body>
-    {{> navside}}
-
-
-    {{>nav}}
-    
-    {{#Layout template="MyLayout"}} {{/Layout}}
-    
+   
     
  
-      <div style="position:fixed;right:5px;bottom:5px;color:#FFF;z-index:1000;"><a href="#" id="top" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-chevron-up"></span></a></div>
+      
 </body>
 
 
 <template name="MyLayout">
+    
+    {{> navside}}
+
+
+    {{>nav}}    
 
     {{> yield }}
     
-    
+    <div style="position:fixed;right:5px;bottom:5px;color:#FFF;z-index:1000;"><a href="#" id="top" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-chevron-up"></span></a></div>
 
 </template>
 
@@ -48,6 +49,14 @@
 </ul>
     
     
+
+</template>
+
+
+<template name="admin_layout">
+
+     {{> yield }}
+
 
 </template>
 
@@ -140,7 +149,7 @@
 
 
 
-            <div class="col-md-6 ">
+            <div class="col-md-6">
                 
                 
                 
