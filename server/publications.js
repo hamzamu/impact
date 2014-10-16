@@ -7,6 +7,11 @@ Meteor.publish('search', function (query, options) {
 });
 
 
+Meteor.publish('postsx', function () {
+    return posts.find({});
+});
+
+
 //    if (this.userId) {
 //        return ContactsFS.find({ owner: this.userId }, { limit: 30 });
 //    }
@@ -69,10 +74,10 @@ Meteor.publishComposite('postcomments', function (post) {
         childern : [
         
                 {
-                    find: function (comments) {
+                    find: function (comment) {
                         // Find user that authored comment.
                         return Meteor.users.find({
-                            _id: comments.user
+                            _id: comment.user
                         });
                     }
                 }
@@ -101,13 +106,6 @@ Meteor.publishComposite('SinglePostT', function (postID) {
 
 
 
-//rates 
-
-
-
-Meteor.publish('rates', function () {
-    return rates.find();
-});
 
 //tags
 
@@ -192,3 +190,14 @@ Meteor.publishComposite('posts', function (options) {
 
     }
 });
+
+///rates
+
+//Meteor.publish('rates', function (id) {
+//    return rates.find({user:id});
+//});
+
+Meteor.publish('rates', function () {
+    return rates.find();
+});
+

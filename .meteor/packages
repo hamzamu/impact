@@ -32,4 +32,6 @@ cfs:filesaver
 cfs:filesystem
 cfs:gridfs
 reywood:publish-composite
+yefim:accounts-linkedin
+mrt:jquery-masonry
 

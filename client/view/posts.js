@@ -9,6 +9,55 @@
 //};
 
 
+// get posts to the fron page
+Template.saved.rates = function () {
+    return rates.find({}, {
+        sort: {
+            _id: -1
+        }
+    });
+
+};
+
+//if (Meteor.isClient) {
+//  Meteor.startup(function () {
+//    $(document).ready(function (){
+//     $("#container").gridalicious({
+//        width:450,
+//        animate:true,
+//        selector:".postx",
+//        gutter:40
+//     });
+//    });
+//  });
+//}
+
+
+Template.saved.rendered = function(){
+   //$("#container").gridalicious({gutter: 20});
+   //$('#container postx').wookmark();
+    //$('#container').freetile();
+    //$("#container").nested({selector: '.postx'});
+}
+
+Template.saved.helpers({
+    
+    postx : function (){
+        var postID = this.post ;
+        return posts.find({
+            _id:postID },{limit:1});    
+    },
+    
+    files: function () {
+        var postID = this.post;
+        return Images.files.find({
+            post: postID
+        }).fetch();
+    },    
+    
+    
+})
+
 
 
 
@@ -579,6 +628,7 @@ Template.postSingle.events({
         if (Meteor.userId() && !like)
             rates.insert({
                 user: Meteor.userId(),
+                saved : new Date(),
                 post: this._id
             });
 

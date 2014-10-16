@@ -11,11 +11,13 @@
                     </div>
 <!--                    <div class="navbar-collapse collapse">-->
 
-
+                    <ul class="nav navbar-nav pull-right">
+                      
+                    </ul>
 
                     <ul class="nav navbar-nav pull-right">
 
-
+                          <li><a href="{{pathFor 'booklet'}}">Booklet</a></li>
 
                         {{#if currentUser}}<li><a href="/profile"><span class="glyphicon glyphicon-user"></span></a></li>{{/if}}
                         {{> loginButtons}}
