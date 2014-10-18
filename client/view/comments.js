@@ -1,8 +1,13 @@
 // comments show
 Session.set('commentForm', false);
-Template.commentsbox.commentForm = function () {
-    return Session.equals('commentForm', this._id);
-};
+
+
+
+Template.commentsbox.helpers({
+    commentForm : function(){
+        return Session.equals('commentForm', this._id);
+    }
+});
 Template.comments.helpers({
     username: function () {
         var userid = this.user;
@@ -16,22 +21,21 @@ Template.comments.helpers({
         //date = moment(this.created_at).format('LL');
         return date;
     },
-    
+      commentsList : function (){
+          return comments.find({
+              post: this._id
+          }, {
+              sort: {
+                  time: 1
+              },
+              limit: Session.get('MoreComments')
+          });
+
+      }
+
 });
 
 
-// get posts to the fron page
-Template.comments.commentsList = function () {
-    return comments.find({
-        post: this._id
-    }, {
-        sort: {
-            time: 1
-        },
-        limit: Session.get('MoreComments')
-    });
-
-};
 
 
 //Template.comments.rendered = function () {
@@ -74,7 +78,7 @@ Template.comments.events({
     'click #clearComment': function () {
         $('.commentText').val('');
     },
-    
+
     'click .more': function(e,t){
         Session.set('MoreComments', Session.get('MoreComments') + 10);
 }

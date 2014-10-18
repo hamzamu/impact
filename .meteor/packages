@@ -18,7 +18,6 @@ accounts-facebook
 accounts-twitter
 coffeescript
 mrt:accounts-admin-ui-bootstrap-3@0.2.5
-bootstrap-3
 mrt:publish-with-relations@0.1.5
 iron:router
 ian:accounts-ui-bootstrap-3
@@ -34,4 +33,5 @@ cfs:gridfs
 reywood:publish-composite
 yefim:accounts-linkedin
 mrt:jquery-masonry
+ian:bootstrap-3
 

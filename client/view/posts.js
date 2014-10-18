@@ -1,66 +1,5 @@
-// get posts to the fron page
-//Template.posts.posts = function () {
-//    return posts.find({}, {
-//        sort: {
-//            created_at: -1
-//        }
-//    });
-//
-//};
 
-
-// get posts to the fron page
-Template.saved.rates = function () {
-    return rates.find({}, {
-        sort: {
-            _id: -1
-        }
-    });
-
-};
-
-//if (Meteor.isClient) {
-//  Meteor.startup(function () {
-//    $(document).ready(function (){
-//     $("#container").gridalicious({
-//        width:450,
-//        animate:true,
-//        selector:".postx",
-//        gutter:40
-//     });
-//    });
-//  });
-//}
-
-
-Template.saved.rendered = function(){
-   //$("#container").gridalicious({gutter: 20});
-   //$('#container postx').wookmark();
-    //$('#container').freetile();
-    //$("#container").nested({selector: '.postx'});
-}
-
-Template.saved.helpers({
-    
-    postx : function (){
-        var postID = this.post ;
-        return posts.find({
-            _id:postID },{limit:1});    
-    },
-    
-    files: function () {
-        var postID = this.post;
-        return Images.files.find({
-            post: postID
-        }).fetch();
-    },    
-    
-    
-})
-
-
-
-
+Meteor.subscribe('Images', Session.get('uploadedfileId'));
 
 Template.postSingle.rendered = function () {
     var $item = $(this.find('.post'));
@@ -69,37 +8,37 @@ Template.postSingle.rendered = function () {
         $item.addClass('animated fadeInDown');
         //$item.fadeIn("slow");
         var yregex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
-        $('.embed').val().replace(yregex, '<iframe width="95%" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+       // $('.embed').val().replace(yregex, '<iframe width="95%" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
     });
-    
-//    Meteor.defer(function () {
-//    (function(d, s, id) {
-//          var js, fjs = d.getElementsByTagName(s)[0];
-//          if (d.getElementById(id)) return;
-//          js = d.createElement(s); js.id = id;
-//          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
-//          fjs.parentNode.insertBefore(js, fjs);
-//        }(document, 'script', 'facebook-jssdk'));
-//        
-//    });
-//    
-//   setTimeout(function() { 
-//    (function(d, s, id) {
-//          var js, fjs = d.getElementsByTagName(s)[0];
-//          if (d.getElementById(id)) return;
-//          js = d.createElement(s); js.id = id;
-//          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
-//          fjs.parentNode.insertBefore(js, fjs);
-//        }(document, 'script', 'facebook-jssdk'));
-//  }, 0);   
-    
-//     (function(d, s, id) {
-//          var js, fjs = d.getElementsByTagName(s)[0];
-//          if (d.getElementById(id)) return;
-//          js = d.createElement(s); js.id = id;
-//          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
-//          fjs.parentNode.insertBefore(js, fjs);
-//        }(document, 'script', 'facebook-jssdk'));   
+
+    //    Meteor.defer(function () {
+    //    (function(d, s, id) {
+    //          var js, fjs = d.getElementsByTagName(s)[0];
+    //          if (d.getElementById(id)) return;
+    //          js = d.createElement(s); js.id = id;
+    //          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
+    //          fjs.parentNode.insertBefore(js, fjs);
+    //        }(document, 'script', 'facebook-jssdk'));
+    //
+    //    });
+    //
+    //   setTimeout(function() {
+    //    (function(d, s, id) {
+    //          var js, fjs = d.getElementsByTagName(s)[0];
+    //          if (d.getElementById(id)) return;
+    //          js = d.createElement(s); js.id = id;
+    //          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
+    //          fjs.parentNode.insertBefore(js, fjs);
+    //        }(document, 'script', 'facebook-jssdk'));
+    //  }, 0);
+
+    //     (function(d, s, id) {
+    //          var js, fjs = d.getElementsByTagName(s)[0];
+    //          if (d.getElementById(id)) return;
+    //          js = d.createElement(s); js.id = id;
+    //          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=608515702536335";
+    //          fjs.parentNode.insertBefore(js, fjs);
+    //        }(document, 'script', 'facebook-jssdk'));
 
 }
 
@@ -108,13 +47,7 @@ Template.postSingle.rendered = function () {
 
 
 
-Template.hashtag.hasthag = function () {
-    return Session.get('hashtag');
-};
 
-Template.searchTest.searchQ = function () {
-    return Session.get('prefix');
-};
 
 
 
@@ -122,26 +55,37 @@ Template.searchTest.searchQ = function () {
 
 // publish from the front page
 Session.set('adding_category', false);
-Template.header_home.new_cat = function () {
-    return Session.equals('adding_category', true);
-};
-Template.header_home.postx = function () {
-    return Session.equals('textareax', true);
-};
-
-
-
-
-
-// editing a post
-
 Session.setDefault('editing_listname', null);
 
+Template.header_home.helpers({
+  new_cat:function(){
+    return Session.equals('adding_category', true);
+  },
+  postx:function(){
+    return Session.equals('textareax', true);
+  },
+  files :function () {
+      //return Images.files.find({_id : Session.get('uploadedfileId')}).fetch();
+      return Images.files.find({
+          _id: Session.get('uploadedfileId')
+      }).fetch();
+      var oldFile = Files.findOne({
+          _id: Session.get('uploadedfileId')
+      });
+      var newFile = oldFile.copy({
+          sourceStore: "thumbs"
+      }, metadataObj);
+      return newFile;
 
-Template.postSingle.editing = function () {
-    return Session.equals('editing_listname', this._id);
-};
+  },
+});
+
+
+
 // editing a post
+
+
+
 
 
 
@@ -155,9 +99,13 @@ Template.postSingle.helpers({
         });
         return (username);
     },
-    
-    ownPost : function(){
-    
+
+    editing : function(){
+
+      return Session.equals('editing_listname', this._id);
+    },
+    ownPost: function () {
+
     },
     avatar: function () {
         var userid = this.author;
@@ -174,18 +122,18 @@ Template.postSingle.helpers({
     },
     postin: function () {
         var posti = this.post;
-        
-        
+
+
         //var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4, replacePattern5, replacePattern6;
         var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4;
 
         //URLs starting with http://, https://, or ftp://
-        replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;       
+        replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
         //replacedText = posti.replace(replacePattern1, '<a href="$1" target="_blank">link</a>');
         replacedText = posti.replace(replacePattern1, '');
 
         //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
-        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;        
+        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
         //replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">link2</a>');
         replacedText = replacedText.replace(replacePattern2, '');
 
@@ -193,101 +141,103 @@ Template.postSingle.helpers({
         replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
         //replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
         replacedText = replacedText.replace(replacePattern3, '');
-        
-        
+
+
         //Change Hashtags.
         replacePattern4 = /#(\S*)/igm;
         replacedText = replacedText.replace(replacePattern4, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
-        
-        
+
+
         //Change Hashtags.
-//        replacePattern5 = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
-//        replacedText = replacedText.replace(replacePattern5, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');        
-        
+        //        replacePattern5 = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
+        //        replacedText = replacedText.replace(replacePattern5, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+
         //Change Hashtags.
-        
-//        replacePattern6 = /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;       
-//        replacedText = replacedText.replace(replacePattern6, "");
+
+        //        replacePattern6 = /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
+        //        replacedText = replacedText.replace(replacePattern6, "");
 
         return replacedText;
 
-        
 
 
 
-        
+
+
         //var replacex = posti.replace(/#(\S*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
         //--old--// var replacex = posti.replace(/(#[a-z0-9][a-z0-9\-_]*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
-        //replacex = posti.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<a href="http://youtu.be/$1" >video</a>');        
+        //replacex = posti.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<a href="http://youtu.be/$1" >video</a>');
         //return replacex;
-    },       
-//        postin: function () {
-//        var posti = this.post;
-//        var replacex = posti.replace(/#(\S*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
-//        //var replacex = posti.replace(/(#[a-z0-9][a-z0-9\-_]*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
-//        //replacex = posti.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<a href="http://youtu.be/$1" >video</a>');        
-//        return replacex;
-//    },       
-//    
+    },
 
-    
-    
-    postintext: function(){
+
+    //        postin: function () {
+    //        var posti = this.post;
+    //        var replacex = posti.replace(/#(\S*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
+    //        //var replacex = posti.replace(/(#[a-z0-9][a-z0-9\-_]*)/ig, "<a href='/s/$1' class='taglink' alt='$1'>#$1</a>");
+    //        //replacex = posti.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<a href="http://youtu.be/$1" >video</a>');
+    //        return replacex;
+    //    },
+    //
+
+
+
+    postintext: function () {
 
 
     },
-    
+
     youtube: function () {
-    var post = this.post;
+        var post = this.post;
 
-         var replacex, regix1, regix2;
+        var replacex, regix1, regix2;
         var regix1 = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
-        //var matchlink = post.match(regix1);        
+        //var matchlink = post.match(regix1);
         var replacex = post.replace(regix1, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
-        
 
-        
+
+
         return replacex;
 
-    },    
-    
+    },
+
     facebook: function () {
-    var post = this.post;
+        var post = this.post;
 
-         var replacex, regix1;
+        var replacex, regix1;
         //var matchlink = post.match(regix1);
-        var regix1 =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
-        var replacex = post.replace(regix1, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490"></div> ');        
+        var regix1 = /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
+        var replacex = post.replace(regix1, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490"></div> ');
         return replacex;
 
     },
-      
+
     ombed: function () {
-    var post = this.post;
-        
-        var yregex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/gim;
-        var fkregex =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/gim;
+        var post = this.post;
 
-       if (post.match(yregex)){
-           var replacexy = post.match(yregex);
+        var yregex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/gim;
+        var fkregex = /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/gim;
+
+        if (post.match(yregex)) {
+            var replacexy = post.match(yregex);
             var replacex = replacexy.join(" ").replace(yregex, '<iframe width="100%" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
-       }
-           //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");
-           
-        
-        if (post.match(fkregex)){
-            var replacexy = post.match(fkregex);
-            var replacex =replacexy.join(" ").replace(fkregex, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490px"></div> '); 
-        
         }
-        
+        //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");
+
+
+        if (post.match(fkregex)) {
+            var replacexy = post.match(fkregex);
+            var replacex = replacexy.join(" ").replace(fkregex, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490px"></div> ');
+
+        }
+
         //var matchlink = post.match(regix1);
-//        var regix1 =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
-//        var replacex = post.replace(regix1, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490"></div> ');        
+        //        var regix1 =  /(https:)\/\/?(www.)(facebook.com)\/([a-zA-Z0-9.]*)\/(posts)\/([0-9.]*)/;
+        //        var replacex = post.replace(regix1, '<div class="fb-post" data-href="https://www.facebook.com/$4/posts/$6" data-width="490"></div> ');
         return replacex;
 
     },
-  
+
 
     slug: function () {
         var postxt = this.post;
@@ -364,10 +314,10 @@ Template.posts.events({
 
 Template.more.events({
     'click #more': function (e, t) {
-      Session.set('postsn', Session.get('postsn') + 10);
-      // Router.go('/'+ 10);
+        Session.set('postsn', Session.get('postsn') + 10);
+        // Router.go('/'+ 10);
     }
-})
+});
 
 Template.header_home.events({
 
@@ -391,9 +341,9 @@ Template.header_home.events({
     'keyup #add-post-front': function (e, t) {
         if (e.which === 13) {
             var catVal = String(e.target.value || "");
-            
-            var testo = catVal.replace(/(http[^ ]+)/g,'$1\n'); 
-           
+
+            var testo = catVal.replace(/(http[^ ]+)/g, '$1\n');
+
             if (catVal) {
                 if (Meteor.userId()) {
                     var postText = catVal.toLowerCase();
@@ -401,41 +351,37 @@ Template.header_home.events({
                     var arr = [];
                     $.each(tagslist, function (i, val) {
                         if (tagslist[i].indexOf('#') == 0) {
-                            
+
                             arr.push(tagslist[i]);
                             var tag = tags.findOne({
                                 tag: tagslist[i]
                             });
-                            
+
                             if (!tag) {
-                                
-                                //var res = tagslist[i].toLowerCase();
-                                tags.insert({
-                                    tag: tagslist[i],
-                                    count: 1,
-                                    dtime: new Date()
-                                });
+
+                                var res = tagslist[i].toLowerCase();
+                                                               tags.insert({
+                                                                   tag: tagslist[i],
+                                                                   count: 1,
+                                                                   dtime: new Date()
+                                                               });
                             } else {
-                                tags.update(tag._id, {
-                                    $inc: {
-                                        count: 1
-                                    }
-                                }, {
-                                    dtime: new Date()
-                                });
+                                                               tags.update(tag._id, {
+                                                                   $inc: {
+                                                                       count: 1
+                                                                   }
+                                                               }, {
+                                                                   dtime: new Date()
+                                                               });
                             }
                         }
                     });
-                    
-                    
-                var yregex = /((?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+))/gim;
-               
 
-               //if (postText.match(yregex))
-                   //var replacexy = postText.match(yregex);
-                    //var replacex = postText.replace(yregex, '<p>$1 <p>&nbsp;&nbsp;&nbsp;');
-                   //var replacex = post.replace(yregex, '<iframe width="490" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>').split(" ");                    
-                    
+
+                    var yregex = /((?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+))/gim;
+
+
+
                     var postId = posts.insert({
                         //post: replacex,
                         //post: catVal,
@@ -448,8 +394,34 @@ Template.header_home.events({
                         author: Meteor.userId(),
                         image: Session.get('uploadedfileId'),
                     });
-                    
-                    Images.update(Session.get('uploadedfileId'), {$set: {post: postId}});
+
+                    var post = {
+                        post: testo,
+                        created_at: new Date(),
+                        tags: arr,
+                        author: Meteor.userId(),
+                        image: Session.get('uploadedfileId'),
+
+                    }
+                    Meteor.call('post', post, function (error) {
+                        //                        if (error)
+                        //                            return alert(error.reason);
+
+                        //                        Router.go('postPage', {
+                        //                            _id: id
+                        //                        });
+                    });
+
+
+                    //                    Meteor.call('post', post, function (error) {
+                    //                    });
+
+
+                    Images.update(Session.get('uploadedfileId'), {
+                        $set: {
+                            post: postId
+                        }
+                    });
 
 
                     Session.set('uploadedfileId', null);
@@ -485,45 +457,23 @@ Template.header_home.events({
             Meteor.setTimeout(function () {
                 Session.set('adding_category', false);
             }, 500);
-            
-             Images.remove(Session.get('uploadedfileId')); 
 
-        }        
-        
+            Images.remove(Session.get('uploadedfileId'));
+
+        }
+
         if (e.which === 32) {
 
             var post = $('#add-post-front').val();
             $("#add-post-front").val().replace(/(http[^ ]+)/g, "$1 &#10;");
-            
-            
-      
-  
+
+
+
+
 
         }
 
     },
-//    
-//    "keypress #add-post-front":function(e,t){
-//        
-//        //$(e.target).val().replace(/\n/g, "&#10;");
-//        $(e.target).val().replace(/(http[^ ]+)/g, "$1 &#10;");
-//         //var new = catVal.replace(/(http[^ ]+)/g, "$1 &#10;");
-//        
-//        
-//        var post = $(e.target).val();
-//         Session.set('textareax', post);
-//        var textarea = document.getElementById('add-post-front');
-//        textarea.value = textarea.value.replace(new RegExp(/(http[^ ]+)/g,'\n$1'), '@import url("$1");');
-//        //textarea.value = textarea.value.replace(new RegExp('<link rel="stylesheet" type="text/css" href="(.*)" />', 'g'), '@import url("$1");');
-//         //post.replace(/(http[^ ]+)/g,'\n$1');
-//         //post.replace(/(http[^ ]+)/g,'hamza');
-//        post.replace(/(http[^ ]+)/g,'hamza');
-//        if(e.which === 32){
-//         //post.replace(/hamza/g,'hamzaxxx');
-//         post.replace(/(http[^ ]+)/g,'hamza');
-//             Session.set('textareax', post);
-//        }
-//    },
 
 
     "change .myFileInput": function (event, template) {
@@ -545,52 +495,19 @@ Template.header_home.events({
 
 
 
-//Template.header_home.rendered = function() {
-//  $(this.find('textarea')).val();
-//  textarea.value = textarea.value.replace(new RegExp(/(http[^ ]+)/g,'\n$1'), '@import url("$1");');
-//  var post = $('#add-post-front').val();
-//    Session.set('textareax', post);
-//   Meteor.defer(function() {
-//     var postx = $(this.find('textarea')).val(); 
-//       Session.set('textareax', post);
-//   });    
-//}
-
-//    Template.header_home.uploadedImage = function () {
-//        return Images.files.find({
-//            _id: Session.get('uploadedfileId')
-//        }).fetch();
-//
-//    };
-
-
-    Meteor.subscribe('Images', Session.get('uploadedfileId'));
-    Template.header_home.files = function() {
-     //return Images.files.find({_id : Session.get('uploadedfileId')}).fetch();
-     return Images.files.find({_id : Session.get('uploadedfileId')}).fetch();
-        var oldFile = Files.findOne({_id : Session.get('uploadedfileId')});
-        var newFile = oldFile.copy({sourceStore: "thumbs"}, metadataObj);
-        return   newFile ;
-
-    };
-
-
-
-
-Meteor.setInterval(function () {
-    $('#error').fadeOut();
-    Session.set('createError', null);
-}, 7000);
-
-
-
-
 //home page post events
 Template.postSingle.events({
 
     'click .delete-link': function () {
 
-        posts.remove(this._id);
+        //posts.remove(this._id);
+        var postId = this._id;
+        var OwnPost = this.author ;
+        var user = Meteor.user();
+        if(user === OwnPost )
+            Meteor.call('postRemove', postId);
+        else
+            Meteor.call('createErrorMsg', 'You are not allodddd post U are not an awonser!');
 
     },
 
@@ -608,10 +525,10 @@ Template.postSingle.events({
     //        }, 1000)
     //
     //
-    //    },    
+    //    },
 
 
-    //edit open session to edit 
+    //edit open session to edit
     'click  .edit': function (e, t) { // start editing list name
         Session.set('editing_listname', this._id);
         Meteor.flush();
@@ -628,7 +545,7 @@ Template.postSingle.events({
         if (Meteor.userId() && !like)
             rates.insert({
                 user: Meteor.userId(),
-                saved : new Date(),
+                saved: new Date(),
                 post: this._id
             });
 
@@ -661,15 +578,32 @@ Template.postSingle.events({
 
     },
 
-    // edit in place 
+    // edit in place
     'keyup .list-name-input': function (e, t) {
         if (e.which === 13) {
             var catVal = String(e.target.value || "");
+            var testo = catVal.replace(/(http[^ ]+)/g, '$1\n');
+            //            var postID = this._id ;
+
+            //            var postEdit = {
+            //
+            //                post : testo ,
+            //                modified_at : new Date(),
+            //                editor : Meteor.userId(),
+            //            }
+
+
             posts.update(this._id, {
                 $set: {
                     post: catVal
                 }
+            }, function (error) {
+                if (error)
+                    Meteor.call('createErrorMsg', 'You are not allowed to edit this post !');
             });
+
+            //            Meteor.call ( 'postedit ', postID ,  testo ,function(error){});
+
 
             Session.set('editing_listname', null);
         }

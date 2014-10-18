@@ -4,6 +4,8 @@ Accounts.ui.config({
 
 
 
+
+
 Template._loginButtonsLoggedInDropdown.events({
     'click #login-buttons-edit-profile': function(event) {
         event.stopPropagation();
@@ -22,11 +24,6 @@ Template.navside.helpers({
 
 
 
-Session.setDefault('createError', null);
-Template.errorz.error = function () {
-    return Session.get("createError");
-};
-
 
 
 
@@ -35,7 +32,7 @@ UI.body.events({
         e.preventDefault();
         $('body').toggleClass('nav-expanded');
         $('body').addClass('stop-scrolling');
-    },    
+    },
 
     'click #nav-close': function (e, t) {
         $('body').removeClass('nav-expanded');
@@ -58,19 +55,6 @@ UI.body.events({
 
 
 
-Meteor.methods({
-    createErrorMsg: function (msg) {
-        Session.set('createError', msg);
-        $('#error').css('display', 'block');
-    },
-    resetPostsNo: function () {
-        Session.set('postsn', 20);
-    },
-    addPost: function(postText,postDate,postAuthor,postTag){
-    
-    }
-
-});
 
 
 
