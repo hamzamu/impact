@@ -3,7 +3,7 @@
 
     <meta charset="UTF-8">
 <!--    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>-->
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -19,22 +19,24 @@
 </head>
 
 <body>
-   
-    
- 
-      
+
+
+
+
 </body>
 
 
 <template name="MyLayout">
-    
+
     {{> navside}}
 
 
-    {{>nav}}    
+    {{>nav}}
+
+    {{> errorz }}
 
     {{> yield }}
-    
+
     <div style="position:fixed;right:5px;bottom:5px;color:#FFF;z-index:1000;"><a href="#" id="top" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-chevron-up"></span></a></div>
 
 </template>
@@ -47,8 +49,8 @@
 	<li><span>10/10/2007</span><a href="#">The code that you ...</a></li>
 	<!-- eccetera -->
 </ul>
-    
-    
+
+
 
 </template>
 
@@ -67,6 +69,7 @@
 <template name="main">
 
     <div class="margintop"></div>
+
     <div class="container">
         {{> header_home}}
 
@@ -75,9 +78,9 @@
 
 
             <div class="col-md-6 ">
-                
-                
-                
+
+
+
                 <!--col-md-offset-2-->
 
                 {{> posts}}
@@ -112,9 +115,9 @@
 
 
             <div class="col-md-6 ">
-                
-                
-                
+
+
+
                 <!--col-md-offset-2-->
 
 				{{> entrySignIn}}
@@ -125,7 +128,7 @@
 
 
 
- 
+
 
 
 
@@ -150,9 +153,9 @@
 
 
             <div class="col-md-6">
-                
-                
-                
+
+
+
                 <!--col-md-offset-2-->
 
 				{{> entrySignUp}}
@@ -175,7 +178,3 @@
 
     {{> searchbox}}
 </template>
-
-
-
-

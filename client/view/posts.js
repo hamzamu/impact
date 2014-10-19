@@ -599,7 +599,8 @@ Template.postSingle.events({
                 }
             }, function (error) {
                 if (error)
-                    Meteor.call('createErrorMsg', 'You are not allowed to edit this post !');
+                    //Meteor.call('createErrorMsg', 'You are not allowed to edit this post !');
+                    CreateError('You are not allowed to edit this post !');
             });
 
             //            Meteor.call ( 'postedit ', postID ,  testo ,function(error){});

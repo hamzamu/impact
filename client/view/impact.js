@@ -27,7 +27,7 @@ Template.navside.helpers({
 
 
 
-UI.body.events({
+Template.body.events({
     'click #nav-expander': function (e, t) {
         e.preventDefault();
         $('body').toggleClass('nav-expanded');
