@@ -1,15 +1,21 @@
 <template name='errorz'>
+{{#if error}}
 
-<div class="errorMsg">hello</div>
-                {{#if error}}
-                <div class="pad margin no-print" id="error">
+<div class="errorMsg col-md-4" id="error">
+
+<h4>{{error}}</h4>
+
+</div>
+{{/if}}
+
+                <!-- <div class="pad margin no-print" id="error">
                     <div class="" style="margin-bottom: 0!important;">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <i class="fa fa-info"></i>
                         <b>Note:</b>{{error}}
                     </div>
                     <br />
-                </div>
-                {{/if}}
+                </div> -->
+
 
 </template>

@@ -209,11 +209,12 @@ background: url("/close_16.png") no-repeat 0 center;
 }
 .post {
     background: #FFF;
-    border-left: 5px solid #D5D5D5;
+/*    border-left: 5px solid #D5D5D5;*/
+    border-left:2px solid #EEE;
     -moz-box-shadow: 1px 1px 3px 0px #dedede;
     -webkit-box-shadow: 1px 1px 3px 0px #dedede;
     box-shadow: 1px 1px 3px 0px #dedede;
-    padding: 20px;
+    padding: 10px 15px 5px 15px;
     overflow: hidden;
     color: #3b3b3b;
     font: Verdana, sans-serif;
@@ -283,8 +284,8 @@ background: url("/close_16.png") no-repeat 0 center;
 .tags span {
     position: relative;
     float: right;
-    margin: 2px;
-    line-height: 22px;
+   
+    
 }
 .cdl2 {
     color: #888;

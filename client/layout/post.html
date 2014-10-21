@@ -2,7 +2,7 @@
 
 
 
-    <div class="post {{deleted}} po embed" id="{{_id}}">
+    <div class="post {{deleted}} " id="{{_id}}">
         
 <!--    {{currentUser._id}}-->
     <!--{{image}}-->
@@ -78,7 +78,7 @@
         <div class="row">
             <div class="col-md-2">{{#if username.avatar}}
             <img src="{{username.avatar}}" class="avatar"/>{{else}}
-<!--            <span class="iconavatar glyphicon glyphicon-user userprofileicon opicon" style=""></span>-->
+
                 <img src="/img/user-bg.png" width="60" height="60" class="avatar"/>
             
             {{/if}} </div>
@@ -139,41 +139,3 @@
 
 
 
-<template name="postShow">
-    <div class="margintop"></div>
-    <div class="container">
-        {{> header_home}}
-
-        <div class="row">
-            {{> controlnav }}
-
-
-            <div class="col-md-6 ">
-                <!--col-md-offset-2-->
-
-
-                {{> postSingle}}
-                <!--post-->
-
-                {{> comments}}
-
-            </div>
-            <!--col for posts-->
-
-
-
-            {{> sidebarnav}}
-
-
-
-        </div>
-        <!--row-->
-
-    </div>
-    <!--container-->
-
-
-    {{> searchbox}}
-
-
-</template>

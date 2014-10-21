@@ -2,10 +2,8 @@
     <title>Impact</title>
 
     <meta charset="UTF-8">
-<!--    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>-->
-
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
 
     <style>
@@ -13,15 +11,15 @@
             background: #f7f7f7 url("/images/bg.png");
         }
     </style>
+    
+    
+<!--    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">-->
 
 
 
 </head>
 
 <body>
-
-
-
 
 </body>
 
@@ -41,28 +39,6 @@
 
 </template>
 
-<template name="newsbar">
-
-<ul id="ticker01">
-	<li><span>10/10/2007</span><a href="#">The first thing ...</a></li>
-	<li><span>10/10/2007</span><a href="#">End up doing is ...</a></li>
-	<li><span>10/10/2007</span><a href="#">The code that you ...</a></li>
-	<!-- eccetera -->
-</ul>
-
-
-
-</template>
-
-
-<template name="admin_layout">
-
-     {{> yield }}
-
-
-</template>
-
-
 
 
 
@@ -77,11 +53,11 @@
             {{> controlnav }}
 
 
-            <div class="col-md-6 ">
+            <div class="col-md-6 col-lg-6 col-xs-12">
 
 
 
-                <!--col-md-offset-2-->
+                
 
                 {{> posts}}
 
@@ -104,77 +80,4 @@
     {{> searchbox}}
 </template>
 
-<template name="sign-in">
 
-    <div class="margintop"></div>
-    <div class="container">
-
-
-        <div class="row">
-
-
-
-            <div class="col-md-6 ">
-
-
-
-                <!--col-md-offset-2-->
-
-				{{> entrySignIn}}
-           <div class="margintop"></div>
-            </div>
-            <!--col for posts-->
-
-
-
-
-
-
-
-
-        </div>
-        <!--row-->
-
-    </div>
-    <!--container-->
-
-
-    {{> searchbox}}
-</template>
-
-<template name="sign-up">
-
-    <div class="margintop"></div>
-    <div class="container">
-
-
-        <div class="row">
-
-
-
-            <div class="col-md-6">
-
-
-
-                <!--col-md-offset-2-->
-
-				{{> entrySignUp}}
-
-            </div>
-            <!--col for posts-->
-
-
-
-
-
-
-        <div class="margintop"></div>
-        </div>
-        <!--row-->
-
-    </div>
-    <!--container-->
-
-
-    {{> searchbox}}
-</template>
