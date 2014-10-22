@@ -287,6 +287,7 @@ Template.postSingle.events({
             Meteor.call('postRemove', postId);
         else
             Meteor.call('createErrorMsg', 'You are not allodddd post U are not an awonser!');
+        
 
     },
 
@@ -329,7 +330,8 @@ Template.postSingle.events({
             });
 
         if (!Meteor.userId()) {
-            Session.set("createError", "login to rate");
+            Session.set("createError", "You have to login to rate and comment");
+            //alertify.alert("login to rate");
         }
     },
 
