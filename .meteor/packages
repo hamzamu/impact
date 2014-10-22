@@ -23,7 +23,6 @@ iron:router
 ian:accounts-ui-bootstrap-3
 cfs:standard-packages
 cfs:graphicsmagick
-cfs:ui
 cfs:file
 cfs:base-package
 cfs:storage-adapter
@@ -34,5 +33,6 @@ reywood:publish-composite
 yefim:accounts-linkedin
 mrt:jquery-masonry
 gwendall:body-events
-ian:bootstrap-3
+pfafman:bootstrap-3
+cfs:ui
 

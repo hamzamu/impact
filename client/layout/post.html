@@ -1,136 +1,152 @@
 <template name='postSingle'>
 
+    <div class=" post">
+        <div class="col-md-2">
+            {{#if username.avatar}}
+            <img src="{{username.avatar}}" class="avatar" />{{else}}
 
+            <img src="/img/user-bg.png" width="60" height="60" class="avatar" />{{/if}}
 
-    <div class="post {{deleted}} " id="{{_id}}">
+        </div>
         
-<!--    {{currentUser._id}}-->
-    <!--{{image}}-->
+        <div class="col-md-10">
+
+            
+                <p>
+                    {{#if username.profile.name}}
+                    <a href="{{pathFor 'user_profile' _id=author}}">@{{username.profile.name}}</a> 
+                    {{else}}
+
+                    <a href="{{pathFor 'user_profile' _id=author}}">@{{username.username}}</a> 
+                    {{/if}}
+
+                    <a href="{{pathFor 'postShow'}}" style="color:#999;"> <span>{{date}}</span></a>
+                </p>
+            
+
+
+            <div class=" {{deleted}} " id="{{_id}}">
+
+                <!--    {{currentUser._id}}-->
+                <!--{{image}}-->
 
 
 
-        
-        {{#if currentUser}} {{#if editing}}
 
-        <textarea class="list-name-input form-control edit_post" id="edit_post" rows="5" value="{{post}}">{{post}}</textarea>
+                {{#if currentUser}} {{#if editing}}
 
-        {{else}}
+                <textarea class="list-name-input form-control edit_post" id="edit_post" rows="5" value="{{post}}">{{post}}</textarea>
 
-        <h4>{{#markdown}}{{postin}}{{/markdown}}</h4>
-        {{/if}} {{else}}
-        <!--<h4><a href="{{pathFor 'postShow'}}">{{post}}</a></h4>-->
-        <h4>{{#markdown}}{{postin}}{{/markdown}}</h4>
-        {{/if}}
+                {{else}} {{#markdown}}{{postin}}{{/markdown}} {{/if}} {{else}}
+                <!--<h4><a href="{{pathFor 'postShow'}}">{{post}}</a></h4>-->
+                {{#markdown}}{{postin}}{{/markdown}} {{/if}}
 
 
-<!--        <div class="fb-post" data-href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553" data-width="500"></div>-->
-
-        
-        
-
-      
-                
-    {{#each files}}
-    <!--       <img src="{{url}}" />-->
-    <p><img src="{{this.url store='thumbs'}}" class="img-responsive" alt="thumbnail" ></p>
-    {{/each}}
-        
+                <!--        <div class="fb-post" data-href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553" data-width="500"></div>-->
 
 
-        <!--{{slug}}-->
 
-        <p class="bs-component tags">
-            {{#if confirmed}}<span class=" label label-default">Confirmed</span>{{/if}} {{#if eyewitness}}<span class="label label-primary">Eyewitness</span>{{/if}} {{#if agancies}}<span class="label label-danger">Agancies</span>{{/if}} {{#if social}}<span class="label label-success">Social media</span>{{/if}} {{#if official}}<span class="label label-warning">Official</span>{{/if}}
 
-        </p>
 
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=285279418337975&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-        
-        
-        
 
-        <div class="embed">{{#markdown}}{{ombed}}{{/markdown}} </div>  
-        
-       
-        
-        
-<!--
+                {{#each files}}
+                <!--       <img src="{{url}}" />-->
+                <p>
+                    <img src="{{this.url store='thumbs'}}" class="img-responsive" alt="thumbnail">
+                </p>
+                {{/each}}
+
+
+
+                <!--{{slug}}-->
+
+                <p class="bs-component tags">
+                    {{#if confirmed}}<span class=" label label-default">Confirmed</span>{{/if}} {{#if eyewitness}}<span class="label label-primary">Eyewitness</span>{{/if}} {{#if agancies}}<span class="label label-danger">Agancies</span>{{/if}} {{#if social}}<span class="label label-success">Social media</span>{{/if}} {{#if official}}<span class="label label-warning">Official</span>{{/if}}
+
+                </p>
+
+                <div id="fb-root"></div>
+                <script>
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=285279418337975&version=v2.0";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+
+
+
+                <div class="embed">{{#markdown}}{{ombed}}{{/markdown}}</div>
+
+
+
+
+                <!--
       {{#markdown}}{{youtube}}{{/markdown}}
       
       <div class="embed">
         {{#markdown}}{{facebook}}{{/markdown}}
     </div>
 -->
-        
-<!--
+
+                <!--
         <div class="row">
             {{tags}}
         </div>
 -->
+                <!--
 
-        <div class="row">
-            <div class="col-md-2">{{#if username.avatar}}
-            <img src="{{username.avatar}}" class="avatar"/>{{else}}
+                <div class="row">
+                    <div class="col-md-2">
+                       
+                    </div>
 
-                <img src="/img/user-bg.png" width="60" height="60" class="avatar"/>
-            
-            {{/if}} </div>
-            
-           <div class="col-md-10"><p style="line-height:55px;">
-            {{#if username.profile.name}}
-            <a href="{{pathFor 'user_profile' _id=author}}" >{{username.profile.name}}</a>
-            {{else}}
 
-            <a href="{{pathFor 'user_profile' _id=author}}">{{username.username}}</a>
-            {{/if}}	
-
-            <a href="{{pathFor 'postShow'}}"><span class="pull-right">{{date}}</span></a></p>
                 </div>
-        </div>
+-->
 
 
 
 
 
-        <p class="bs-component tags">
+                <p class="bs-component tags">
 
 
-            <a href="#" class="rateit cdl2 {{iflike}}"><span class="label label-default cdl2 ">{{numrates}}</span> <span class="glyphicon glyphicon-thumbs-up"></span></a>
+                    <a href="#" class="rateit cdl2 {{iflike}}"><span class="label label-default cdl2 ">{{numrates}}</span> <span class="glyphicon glyphicon-thumbs-up"></span></a>
 
 
-            <a href="#" class=" cdl2"><span class="glyphicon  glyphicon-map-marker"></span></a>	
+                    <a href="#" class=" cdl2"><span class="glyphicon  glyphicon-map-marker"></span></a>	
 
 
-            <a href="#" class="commentshow cdl2"><span class="glyphicon glyphicon-comment"></span></a> 
+                    <a href="#" class="commentshow cdl2"><span class="glyphicon glyphicon-comment"></span></a> 
 
-            <a href="#" class="share cdl2"><span class="glyphicon glyphicon-share"></span></a>
+                    <a href="#" class="share cdl2"><span class="glyphicon glyphicon-share"></span></a>
 
-            <div class="sharebox">
-                <a href="#" class="socialbtn btn btn-xs btn-primary"><span class="fa fa-facebook-square"></span></a>
-                <a href="#" class="socialbtn btn btn-xs btn-info"><span class="fa fa-twitter-square"></span></a>
-                <a href="#" class="socialbtn btn btn-xs btn-danger"><span class="fa fa-google-plus-square"></span></a>
+                    <div class="sharebox">
+                        <a href="#" class="socialbtn btn btn-xs btn-primary"><span class="fa fa-facebook-square"></span></a>
+                        <a href="#" class="socialbtn btn btn-xs btn-info"><span class="fa fa-twitter-square"></span></a>
+                        <a href="#" class="socialbtn btn btn-xs btn-danger"><span class="fa fa-google-plus-square"></span></a>
+                    </div>
+
+
+                    {{#if currentUser}}
+
+
+
+
+                    <a href="#" class="delete-link cdl"><span class="glyphicon  glyphicon-remove "></span></a>
+                    <a href="#" class="edit cdl"><span class="glyphicon  glyphicon-edit"></span></a>
+                    {{/if}}
+                </p>
+
+
+
             </div>
-
-
-            {{#if currentUser}}
-
-
-
-
-            <a href="#" class="delete-link cdl"><span class="glyphicon  glyphicon-remove "></span></a>
-            <a href="#" class="edit cdl"><span class="glyphicon  glyphicon-edit"></span></a>
-            {{/if}}
-        </p>
-
-
-
+        </div>
     </div>
 </template>
 

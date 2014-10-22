@@ -13,7 +13,7 @@
             {{postx}}
 
 
-            
+
 
             <div class=" panel panel-success  shadow">
 
@@ -34,7 +34,11 @@
 
                             <div class="col-lg-12">
                                 <span class="btn myFileInput btn-danger btn-file pull-left"><i class="glyphicon glyphicon-picture" style="font-size:20px;"></i><input type="file"></span>
-                                {{#each files}}
+                                {{#each files}} 
+                                
+                                {{#unless this.isUploaded}} {{> FS.UploadProgressBar  bootstrap=true}} {{/unless}}
+
+
                                 <img src="{{url}}" width="90px" height="120px" class="pull-right img-thumbnail" />{{/each}}
                             </div>
 
@@ -51,9 +55,9 @@
                         </div>
                         {{else}}
 
-                            <a herf="#" class=" btn btn-warning" id="btnNewCat">
-                                <i class="glyphicon glyphicon-plus"></i>
-                            </a>
+                        <a herf="#" class=" btn btn-warning" id="btnNewCat">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </a>
 
 
 

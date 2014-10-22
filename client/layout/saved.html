@@ -1,0 +1,41 @@
+<template name="saved">
+<div class="margintop"></div>
+
+    
+    <div class="container">
+        <div class="row" id="container">
+            
+            {{#each rates}}
+            
+            <div class="postx col-md-4 col-xs-6 col-lg-2">
+                
+
+                {{#each files}}
+                     
+                <img src="{{this.url store='small'}}" width="80" height="80"  class="pull-left img-thumbnail" style="margin:10px;" alt="thumbnail" >
+                {{/each}}
+                
+                
+                <a href="posts/{{post}}" class="pull-right label label-default">#</a>
+                
+                {{#each postx}}
+                    {{post}}
+                    
+                    
+                {{/each}}
+                                
+                        
+                <br />
+<!--                {{user}}-->
+            </div>
+
+            {{/each}}
+        
+        </div> 
+    
+    </div>
+    
+    <div class="margintop"></div>
+
+
+</template>
